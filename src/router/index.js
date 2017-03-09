@@ -1,16 +1,26 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ListCoins from '../components/ListCoins'
+import ListCoins from '../components/coins/ListCoins'
 import Menu from '../components/Menu'
-
+import CoinsSome from '../components/coins/Coins_Some'
+import CoinsFast from '../components/coins/Coins_Fast'
 Vue.use(Router);
 
 export default new Router({
   routes: [
     {
       path: '/list-coins',
-      name: 'ListCoins',
-      component: ListCoins
+      // name: 'ListCoins',
+      component: ListCoins,
+      children: [{
+        path: "",
+        name: "CoinsFast",
+        component: CoinsFast
+      }, {
+        path: "coins-some",
+        name: "CoinsSome",
+        component: CoinsSome
+      }]
     },
     {
       path: "/menu",
