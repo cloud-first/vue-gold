@@ -15,6 +15,7 @@
       title: {
         type: String,
         default: "123"
+
       }
     }
   }

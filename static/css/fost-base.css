@@ -243,8 +243,8 @@ input::-ms-input-placeholder, textarea:-ms-input-placeholder { color: #c7c4c4;  
 .color-m1{color:#f75e46;}
 .color-m2{ color:#1b5bff;}
 
-.bg-fff{ background-color:#fff; } 
-.bg-666{ background-color:#666; } 
+.bg-fff{ background-color:#fff; }
+.bg-666{ background-color:#666; }
 .bg-f1{ background-color:#f1f1f1; }
 .bg-f8{ background-color:#f8f8f8; }
 .bg-m1{ background-color:#f75e46;}
@@ -320,7 +320,7 @@ input::-ms-input-placeholder, textarea:-ms-input-placeholder { color: #c7c4c4;  
 .kf2{bottom:40%; width:.98rem; height:1.16rem;  max-width:768px; text-align:right; position:fixed;right:0}
 .kf2 img{ float:right; width:.96rem; }
 
-/*页面路由效果*/ 
+/*页面路由效果*/
 .ConBox {width: 100%;height: 100%; max-width:768px;position: absolute;top: 0;left: 150%;right: 0;margin: 0 -3.84rem;z-index: 2001;overflow-y: scroll; overflow-x:hidden;-webkit-transform-origin: 0px 0px;-webkit-transform: scale(1, 1);opacity: 1;background: #fff; }
 .Jbox {width: 100%;background: white;}
 .Jbox a {width: 100%;float:left;border-bottom: 1px solid #e8e8e8;text-align:center; height:1rem; line-height:1rem; position: relative; font-size:.3rem;}
@@ -335,7 +335,7 @@ input::-ms-input-placeholder, textarea:-ms-input-placeholder { color: #c7c4c4;  
 /* M站顶部 */
 .top-header{ width:100%; max-width:768px; margin:0 auto; position: relative; background-color:#f6f6f6; line-height:.96rem; z-index:50; }
 .top-header .top-back{ position: absolute; left: 0; min-width:10%; height:.96rem; }
-.top-header .top-back a{display:inline-block; min-width:.55rem; width:100%; height:.96rem; text-indent:-9999px; background:url(../images/left.png) .3rem center no-repeat; background-size: .21rem; }
+.top-header .top-back a{display:inline-block; min-width:.55rem; width:100%; height:.96rem; text-indent:-9999px; background:url(/static/images/common/left.png) .3rem center no-repeat; background-size: .21rem; }
 .top-header h2{ max-width:80%; margin-left:auto; margin-right:auto; height:.96rem; font-weight: normal; line-height:.96rem; text-align:center; white-space:nowrap ; overflow:hidden; -webkit-margin-before: 0; -webkit-margin-after: 0; }
 .top-header .top-right{position: absolute; top:0; right: 0; min-width:10%; font-size: 0; height:.96rem; line-height:.96rem; -webkit-text-size-adjust:none; text-align: right;}
 .top-header .top-right .back-home{ display:inline-block; height:.96rem; min-width:.75rem; width:100%; text-indent:-9999px; background:url(../images/home.png) 0 center no-repeat; background-size: .45rem; }

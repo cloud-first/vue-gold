@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1></h1>
     <h1>辅助菜单</h1>
     <ul>
       <li>

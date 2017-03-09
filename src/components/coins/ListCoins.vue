@@ -1,12 +1,12 @@
 <template>
   <div>
-    {{$route.query}}
-    <coins-head :title="'父组件给的标题'"></coins-head>
-    <hr>
+    <!--{{$route.query}}-->
+    <coins-head :title="$route.query.gname+'/'+$route.query.areaname+'/'+$route.query.servername"></coins-head>
+
     <coins-from></coins-from>
-    <hr>
+
     <router-view></router-view>
-    <hr>
+
     <coins-person></coins-person>
   </div>
 </template>
@@ -22,7 +22,8 @@
     name: "ListCoins",
     data () {
       return {
-        msg: 'Welcome to Your Vue.js App'
+        msg: 'Welcome to Your Vue.js App',
+
       }
     },
     components: {
