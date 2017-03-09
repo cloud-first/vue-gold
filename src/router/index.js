@@ -1,15 +1,25 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
+import ListCoins from '../components/ListCoins'
+import Menu from '../components/Menu'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'Hello',
-      component: Hello
+      path: '/list-coins',
+      name: 'ListCoins',
+      component: ListCoins
+    },
+    {
+      path: "/menu",
+      name: 'Menu',
+      component: Menu
+    },
+    {
+      path: "*",
+      redirect: "/menu"
     }
   ]
 })
