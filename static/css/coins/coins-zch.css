@@ -213,7 +213,7 @@
 }
 
 .showlist {
-	display: none;
+	display: block;
 	top: -.97rem;
 	left: 0;
 	z-index: 51;
@@ -231,7 +231,7 @@
 }
 
 .shade {
-	display: none;
+	display: block;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -239,4 +239,5 @@
 	z-index: 50;
 	background: #000;
 	opacity: .5;
+  position: fixed;
 }

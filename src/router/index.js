@@ -2,8 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import ListCoins from '../components/coins/ListCoins'
 import Menu from '../components/Menu'
+import DropDown from '../components/DropDown'
 import CoinsSome from '../components/coins/Coins_Some'
 import CoinsFast from '../components/coins/Coins_Fast'
+
 Vue.use(Router);
 
 export default new Router({
@@ -20,13 +22,20 @@ export default new Router({
         path: "coins-some",
         name: "CoinsSome",
         component: CoinsSome
-      }]
+      },
+      {
+        path: "/DropDown",
+        name: 'DropDown',
+        component: DropDown
+      },
+      ]
     },
     {
       path: "/menu",
       name: 'Menu',
       component: Menu
     },
+
     {
       path: "*",
       redirect: "/menu"
