@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div v-if="xianshi" >
     <div class="w-100 showlist pa">
       <div class="pr bg-f6 color-000 f32 lh110 text-center px-30">
 
-        收货角色名 <router-link :to="{name:'CoinsFast',query:$route.query}"><i class="pa" id="coin-close"><img src="/static/images/common/close.png"/></i></router-link>
+        收货角色名<i @click="show()" class="pa" id="coin-close"><img src="/static/images/common/close.png"/></i>
       </div>
       <ul>
         <li class="bg-fff f28 color-000 border-bottom">
@@ -33,7 +33,20 @@
 
 <script>
 export default {
-    name:"DropDown"
+    name:"DropDown",
+    props: ['xianshi'],
+    data () {
+      return {
+        msg: 'Welcome to Your Vue.js App',
+
+      }
+    },
+    methods:{
+      show:function(){
+          this.$emit("change")
+      }
+
+    }
 }
 </script>
 
