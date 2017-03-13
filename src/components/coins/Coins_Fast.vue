@@ -6,7 +6,7 @@
         <div class="fr f28 color-888 lh110">5分钟内发货</div>
       </div>
       <ul class="clearfix px-30">
-        <li class="fl text-center mx-5 mt-20">
+        <li class="fl text-center mx-5 mt-20" v-for="fastList in fastLists">
           <a class="d-block f28 mt-25">
             <span class="d-block f32 color-f75e46">10元</span> 400万金
           </a>
@@ -59,7 +59,16 @@
 
 <script>
   export default {
-      name: "CoinsFast"
+    name:"CoinsPerson",
+    data () {
+      return {
+        fastLists:[],
+      }
+    },
+    created:function(){
+        this.
+    }
+
   }
 </script>
 

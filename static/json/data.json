@@ -1,0 +1,34 @@
+{
+
+  "lists": [
+    {
+      "prices": "20400",
+      "money": "500",
+      "url": "/static/images/common/mobile.png",
+      "kusun": "1",
+      "perPrices":"40.08"
+    },
+    {
+      "prices": "8012",
+      "money": "200",
+      "url": "/static/images/common/pc.png",
+      "kusun": "5",
+      "perPrices":"40.20"
+    },
+    {
+      "prices": "20400",
+      "money": "500",
+      "url": "/static/images/common/pc.png",
+      "kusun": "1",
+      "perPrices":"40.50"
+    },
+    {
+      "prices": "20400",
+      "money": "500",
+      "url": "/static/images/common/mobile.png",
+      "kusun": "2",
+      "perPrices":"40.18"
+    }
+
+   ]
+}
