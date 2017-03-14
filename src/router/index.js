@@ -23,11 +23,6 @@ export default new Router({
         name: "CoinsSome",
         component: CoinsSome
       },
-      {
-        path: "/DropDown",
-        name: 'DropDown',
-        component: DropDown
-      },
       ]
     },
     {

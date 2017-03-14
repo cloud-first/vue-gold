@@ -224,6 +224,10 @@
 	transform: translateY(-50%);
 	right: .3rem;
 }
+.coin-span{
+  width: 1rem;
+  height: 1rem;
+}
 
 #coin-close img {
 	width: .33rem;

@@ -8,42 +8,7 @@
       <ul class="clearfix px-30">
         <li class="fl text-center mx-5 mt-20" v-for="fastList in fastLists">
           <a class="d-block f28 mt-25">
-            <span class="d-block f32 color-f75e46">10元</span> 400万金
-          </a>
-        </li>
-        <li class="fl text-center mx-5 mt-20">
-          <a class="d-block f28 mt-25">
-            <span class="d-block f32 color-f75e46">50元</span> 2000万金
-          </a>
-        </li>
-        <li class="fl text-center mx-5 mt-20">
-          <a class="d-block f28 mt-25">
-            <span class="d-block f32 color-f75e46">100元</span> 4000万金
-          </a>
-        </li>
-        <li class="fl text-center mx-5 mt-20">
-          <a class="d-block f28 mt-25">
-            <span class="d-block f32 color-f75e46">200元</span> 8000万金
-          </a>
-        </li>
-        <li class="fl text-center mx-5 mt-20">
-          <a class="d-block f28 mt-25">
-            <span class="d-block f32 color-f75e46">300元</span> 1200万金
-          </a>
-        </li>
-        <li class="fl text-center mx-5 mt-20">
-          <a class="d-block f28 mt-25">
-            <span class="d-block f32 color-f75e46">500元</span> 20000万金
-          </a>
-        </li>
-        <li class="fl text-center mx-5 mt-20">
-          <a class="d-block f28 mt-25">
-            <span class="d-block f32 color-f75e46">800元</span> 32000万金
-          </a>
-        </li>
-        <li class="fl text-center mx-5 mt-20">
-          <a class="d-block f28 mt-25">
-            <span class="d-block f32 color-f75e46"> 1000元</span> 40000万金
+            <span class="d-block f32 color-f75e46">{{fastList.money}}元</span> {{fastList.prices}}万金
           </a>
         </li>
         <li class="fl text-center mx-5 mt-20">
@@ -66,8 +31,15 @@
       }
     },
     created:function(){
-        this.
-    }
+      const selfs = this
+      this.$http.get('/static/json/data.json').then((response)=>{
+        setTimeout(() => {
+          selfs.fastLists = response.body.fasts
+        }, 500)
+        },(response)=>{
+            console.log("error")
+          })
+        }
 
   }
 </script>

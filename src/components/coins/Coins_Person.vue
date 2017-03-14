@@ -35,9 +35,9 @@
         const self = this
         this.$http.get('/static/json/data.json').then((response)=>{
           setTimeout(() => {
-            console.log(response.body.lists)
+//            console.log(response.body.lists)
             response.body.lists.forEach(function(i,n){
-              console.log(i);
+
             })
             this.personLists = response.body.lists
           }, 500)
