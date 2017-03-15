@@ -1,8 +1,12 @@
 <template>
   <div>
-    <coins-head :title="$route.query.gname+'/'+$route.query.areaname+'/'+$route.query.servername"></coins-head>
+    <coins-head :title="订单详情"></coins-head>
 
-    <coins-from :url="test"></coins-from>
+    <!---------------------------- 订单取消 ---------------------------->
+    <div class="mt-100 px-30 or-title lh130 pr">
+      <img class="pa w-100" src="../images/coins/border-bg.png" />
+      <span class="pl-20">交易取消</span>
+    </div>
 
     <router-view></router-view>
 
@@ -11,26 +15,14 @@
 </template>
 
 <script>
-  import Head from "../Head.vue"
-  import CoinsFast from "./Coins_Fast.vue"
-  import CoinsFrom from "./Coins_From.vue"
-  import CoinsPerson from "./Coins_Person.vue"
-  import CoinsSome from "./Coins_Some.vue"
 
   export default {
-    name: "ListCoins",
+    name: "CoinsOrder",
+
     data () {
-      return {
-        msg: 'Welcome to Your Vue.js App',
-        test: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list).list: []
-      }
-    },
-    components: {
-      "coins-head": Head,
-      "coins-fast": CoinsFast,
-      "coins-from": CoinsFrom,
-      "coins-person": CoinsPerson,
-      "coins-some": CoinsSome
+
+
     }
+
   }
 </script>
