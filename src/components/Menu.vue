@@ -30,12 +30,7 @@
           广东三区
         </router-link>
       </li>
-      <li>
-        <router-link
-          to="/coins-order?serverid=YXF16053120330995500018&areaid=YXQ16053120274791000015&gid=YX16053120241378200001&operatorId=undefined&operatorName=&gname=地下城与勇士&areaname=广东区&servername=广东3区&goodsType=3&typename=%2F%2F游戏币&gameImageUrl=">
-          订单详情
-        </router-link>
-      </li>
+
     </ul>
   </div>
 </template>

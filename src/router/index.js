@@ -5,7 +5,6 @@ import Menu from '../components/Menu'
 import DropDown from '../components/DropDown'
 import CoinsSome from '../components/coins/Coins_Some'
 import CoinsFast from '../components/coins/Coins_Fast'
-import CoinsOrder from '../components/coins/Coins_Order'
 Vue.use(Router);
 
 export default new Router({
@@ -30,12 +29,6 @@ export default new Router({
       name: 'Menu',
       component: Menu
     },
-    {
-      path: "/coins-order",
-      name: 'CoinsOrder',
-      component: CoinsOrder
-    },
-
     {
       path: "*",
       redirect: "/menu"
