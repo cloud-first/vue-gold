@@ -1,9 +1,9 @@
 <template>
-  <div>
-  <div class="box4 border-bottom clearfix">
-    <div class="fl f28 lh110 color-000"><span class="f32 color-000 mr-20 brl pl-20">店铺发货</span>1元=40万金</div>
-    <div class="fr f28 color-888 lh110">15分钟内发货</div>
-  </div>
+  <div class="coin-msg mt-100 bg-fff pb-30">
+    <div class="box4 border-bottom clearfix">
+      <div class="fl f28 lh110 color-000"><span class="f32 color-000 mr-20 brl pl-20">店铺发货</span>1元=40万金</div>
+      <div class="fr f28 color-888 lh110">15分钟内发货</div>
+    </div>
     <ul class="clearfix px-20 mt-30">
       <li class="fl text-center px-10 ">
         <a class="d-block f28 my-10 pt-10">
@@ -51,6 +51,7 @@
         </a>
       </li>
     </ul>
+  </div>
     <!--<div class="coin-msg mt-20 bg-fff pb-30">-->
       <!--<div class="box4 clearfix">-->
         <!--<div class="fl f28 lh110"><span class="color-888 mr-20">单价</span>1元=40万金</div>-->
@@ -70,7 +71,7 @@
       <!--</ul>-->
     <!--</div>-->
 
-  </div>
+
 </template>
 
 <script>
