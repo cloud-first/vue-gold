@@ -1,11 +1,9 @@
 <template>
   <div>
     <coins-head :title="$route.query.gname+'/'+$route.query.areaname+'/'+$route.query.servername"></coins-head>
-
-    <coins-from :url="test"></coins-from>
-
-    <router-view></router-view>
-
+    <!--<coins-from :url="test"></coins-from>-->
+    <!--<router-view></router-view>-->
+    <coins-fast></coins-fast>
     <coins-person></coins-person>
   </div>
 </template>
