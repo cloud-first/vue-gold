@@ -18,7 +18,21 @@ const CoinsOrder = resolve => {
     resolve(require('./../components/coins/Coins_Order.vue'));
   },'Coins_Type');
 };
-
+const CoinsSome = resolve => {
+  require.ensure(['./../components/coins/Coins_Some.vue'],()=>{
+    resolve(require('./../components/coins/Coins_Some.vue'));
+  },'Coins_Type');
+};
+const CoinsElse = resolve => {
+  require.ensure(['./../components/coins/Coins_Else.vue'],()=>{
+    resolve(require('./../components/coins/Coins_Else.vue'));
+  },'Coins_Type');
+};
+const CoinsSales = resolve => {
+  require.ensure(['./../components/coins/Coins_Sales.vue'],()=>{
+    resolve(require('./../components/coins/Coins_Sales.vue'));
+  },'Coins_Type');
+};
 
 export const coinsType =
   {
@@ -39,7 +53,26 @@ export const coinsType =
         default:CoinsOrder
       },
        name: 'CoinsOrder',
-    }
+    },{
+        path: "/menu/coins-type/coins-some",
+        components:{
+          default:CoinsSome
+        },
+        name: 'CoinsSome',
+      },{
+        path: "/menu/coins-type/coins-else",
+        components:{
+          default:CoinsElse
+        },
+        name: 'CoinsElse',
+      },{
+        path: "/menu/coins-type/coins-sales",
+        components:{
+          default:CoinsSales
+        },
+        name: 'CoinsSales',
+      }
+
     ]
   }
 

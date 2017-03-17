@@ -11,7 +11,7 @@
 <script>
   import Head from "../Head.vue"
   import CoinsFast from "./Coins_Fast.vue"
-  import CoinsFrom from "./Coins_From.vue"
+  import CoinsForm from "./Coins_Form.vue"
   import CoinsPerson from "./Coins_Person.vue"
   import CoinsSome from "./Coins_Some.vue"
 
@@ -26,7 +26,8 @@
     components: {
       "coins-head": Head,
       "coins-fast": CoinsFast,
-      "coins-from": CoinsFrom,
+      "coins-from": CoinsForm,
+      "coins-from": CoinsForm,
       "coins-person": CoinsPerson,
       "coins-some": CoinsSome
     }

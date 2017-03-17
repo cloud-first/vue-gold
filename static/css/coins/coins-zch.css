@@ -217,7 +217,7 @@
 }
 
 .showlist {
-	display: none;
+	display: block;
 	top: 1.27rem;
 	left: 0;
 	z-index: 51;
