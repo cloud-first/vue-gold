@@ -48,7 +48,7 @@ export const coinsType =
       },
       name: 'ListCoins',
     },{
-      path: "/menu/coins-type/coins-order",
+      path: "/vue/coins-type/coins-order",
       components:{
         default:CoinsOrder
       },

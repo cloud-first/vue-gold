@@ -1,12 +1,12 @@
 <template>
   <!---------------------------- 角色信息 ---------------------------->
   <div class="js-msg mt-20 bg-fff clearfix">
+    <drop-down :xianshi="xianshi" @change="xianshi = !xianshi" v-on:ee="incrementTotal"></drop-down>
     <ul class="bg-fff">
       <li class="w-100 border-bottom clearfix lh110 px-30 f32 pr">
         <span class="f32">收货角色名</span>
         <input class="coin-input lh110 pa" type="text" name="" value="" id="username" v-model="name" placeholder="请输入接收游戏币的角色名" />
         <i class="pa" v-if="isTrue" id="divselect" @click="show()"><img src="/static/images/coins/coinuser.png"/></i>
-        <drop-down :xianshi="xianshi" @change="xianshi = !xianshi" v-on:ee="incrementTotal"></drop-down>
       </li>
       <li class="w-100 border-bottom clearfix lh110 px-30 f32 pr">
         <span class="f32">我的手机号</span>
@@ -16,27 +16,9 @@
         <span class="f32">我的QQ号</span>
         <input class="coin-input lh110 pa" type="text" name="" id="QQFrom"  v-model="QQ" placeholder="请输入QQ号" />
       </li>
+
     </ul>
   </div>
-
-  <!--<div class="js-msg mt-100 bg-fff clearfix">-->
-    <!--<ul class="bg-fff">-->
-      <!--<li class="w-100 border-bottom clearfix lh110 px-30 f32 pr">-->
-        <!--<span class="f32">收货角色名</span>-->
-        <!--<input class="coin-input lh110 pa" type="text" name="" id="username" v-model="name" />-->
-        <!--<i class="pa" v-if="isTrue" id="divselect" @click="show()"><img src="/static/images/coins/coinuser.png"/></i>-->
-        <!--<drop-down :xianshi="xianshi" @change="xianshi = !xianshi" v-on:ee="incrementTotal"></drop-down>-->
-      <!--</li>-->
-      <!--<li class="w-100 border-bottom clearfix lh110 px-30 f32 pr">-->
-        <!--<span class="f32">我的手机号</span>-->
-        <!--<input class="coin-input lh110 pa" type="text" name="" id="phoneFrom" v-model="phone" />-->
-      <!--</li>-->
-      <!--<li class="w-100 border-bottom clearfix lh110 px-30 f32 pr">-->
-        <!--<span class="f32">我的QQ号</span>-->
-        <!--<input class="coin-input lh110 pa" type="text" name="" id="QQFrom" v-model="QQ" />-->
-      <!--</li>-->
-    <!--</ul>-->
-  <!--</div>-->
 </template>
 
 <script>
@@ -55,7 +37,7 @@
       return {
         msg: 'Welcome to Your Vue.js App',
         xianshi:false,
-        name:'22',
+        name:'',
         phone:'',
         QQ:'',
         isTrue:(this.url[0] == undefined)?false:true

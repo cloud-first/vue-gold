@@ -22,9 +22,9 @@
         <div class="line py-10">
           <span class="f32 color-000">库存数量</span>
           <div class="count2">
-            <input class="reduce fl f48" name="" type="button" value="-">
-            <input class="num fl f36" name="" type="number" value="1">
-            <input class="add fl common-color f48" name="" type="button" value="+">
+            <input class="reduce fl f48" name="" type="button" value="-" @click="coins_reduce">
+            <input class="num fl f36" name="" type="number" v-model="coins_num">
+            <input class="add fl common-color f48" name="" type="button" value="+" @click="coins_add">
           </div>
           <span class="f32 fr">件</span>
         </div>
@@ -63,7 +63,8 @@
         buyNum:'',
         isActive:false,
         msg:"订单详情",
-        test: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list).list: []
+        test: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list).list: [],
+        coins_num:5
       }
     },
     components: {
@@ -97,6 +98,12 @@
         if(this.buyNum.substr(-1, 1) == '.'){
           this.buyNum = parseInt(this.buyNum)
         }
+      },
+      coins_add:function () {
+          this.coins_num++
+      },
+      coins_reduce:function () {
+          this.coins_num--
       }
     }
 

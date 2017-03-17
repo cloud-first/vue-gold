@@ -15,28 +15,6 @@
       <div class="f32 color-000 lh110">价格<span class="f40 color-f75e46">￥0</span></div>
       <button class="coin-btn bg-f75e46 lh110 color-fff f36 pa">立即购买</button>
     </div>
-  <!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; 金币信息 &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-  <!--<div class="mt-20 bg-f6 clearfix">-->
-    <!--<ul class="tab-2 clearfix">-->
-      <!--<li class="fl border-right text-center lh110 f28">-->
-        <!--<span class="color-888 mr-20">单价</span>1元={{buyPrice}}万金-->
-      <!--</li>-->
-      <!--<li class="fl text-center lh110 f28">-->
-        <!--<span class="color-888 mr-20">库存</span>1,202,540万金-->
-      <!--</li>-->
-    <!--</ul>-->
-    <!--<div class="bg-fff clearfix px-30">-->
-      <!--<div class="fl lh110 w80 f32 color-000">购买数量<input v-model="buyNum" :blur="blur" class="coin-input lh110 pl-30" type="text" placeholder="不得少于单价数量" /></div>-->
-      <!--<div class="fr lh110 f32 color-000">万金</div>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--&lt;!&ndash;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45; 购买 &#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&ndash;&gt;-->
-  <!--<div class="mt-20 bg-fff">-->
-    <!--<div class="p-30">-->
-      <!--<div class="f32 color-000">价格：<span class="color-f75e46">{{buyNum/40.2|mathFilter}}元</span>（最少购买20元）</div>-->
-      <!--<button :class="{'bg-f75e46':isActive,'bg-ccc':!isActive}" class=" w-100 lh110 color-fff f36 mt-30">立即购买</button>-->
-    <!--</div>-->
-  <!--</div>-->
 </div>
 </template>
 
