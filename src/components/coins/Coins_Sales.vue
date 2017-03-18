@@ -36,7 +36,7 @@
       <button class="coin-btn bg-f75e46 lh110 color-fff f36 pa">立即购买</button>
     </div>
     <!---------------------------- 角色信息 ---------------------------->
-    <coins-form :url="test"></coins-form>
+    <coins-form :url="isTest"></coins-form>
 
   </div>
 </template>
@@ -63,7 +63,7 @@
         buyNum:'',
         isActive:false,
         msg:"订单详情",
-        test: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list).list: [],
+        isTest: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list).list: [],
         coins_num:5
       }
     },

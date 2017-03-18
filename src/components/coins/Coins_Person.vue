@@ -8,7 +8,7 @@
     <ul class="clearfix">
       <li class="border-bottom p-30" v-for="personList in personLists">
         <!--<router-link :to="{name:'CoinsSales', query:abc}">-->
-        <router-link :to="{name:'CoinsSales',query:$route.query}">
+        <router-link :to="{name:'CoinsSales',query: {'serverid':'YXF16053120325978800016','areaid':'YXQ16053120274791000015','gname': '地下城与勇士','areaname':'广东区','servername':'广东1区','goodsType':3,'list':JSON.stringify(list)}}">
           <div class="clearfix">
             <span class="fl f32 color-010101">{{personList.prices}}万金</span>
             <b class="fr f32 color-f75e46">{{personList.money}}元</b>
@@ -35,7 +35,31 @@
         return {
           personLists:[],
           abc: null,
-          query:this.$route.query
+          query:this.$route.query,
+          list: {
+            list: [{
+              "name": localStorage.getItem('openid'),
+              "phone": "18738161475",
+              "QQ": "601819456"
+            },{
+              "name": "吃盖浇饭",
+              "phone": "18738161475",
+              "QQ": "601819456"
+            },{
+              "name": "吃盖浇饭",
+              "phone": "18738161475",
+              "QQ": "601819456"
+            },{
+              "name": "吃盖浇饭",
+              "phone": "18738161475",
+              "QQ": "601819456"
+            },{
+              "name": "吃盖浇饭",
+              "phone": "18738161475",
+              "QQ": "601819456"
+            },
+            ]
+          }
         }
       },
       methods: {

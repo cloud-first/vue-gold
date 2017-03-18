@@ -89,7 +89,9 @@
 .color-010101 {
 	color: #010101;
 }
-
+.js-msg{
+  position: relative;
+}
 .js-msg i {
 	right: 0;
 	width: 1rem;
@@ -218,7 +220,7 @@
 
 .showlist {
 	display: block;
-	top: 1.27rem;
+	top: 0;
 	left: 0;
 	z-index: 51;
 }
@@ -237,7 +239,7 @@
 .shade {
 	position: fixed;
 	display: none;
-	top: 2.24rem;
+	top: 4.30rem;
 	left: 0;
 	width: 100%;
 	height: 100%;

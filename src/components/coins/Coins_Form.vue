@@ -1,7 +1,7 @@
 <template>
   <!---------------------------- 角色信息 ---------------------------->
   <div class="js-msg mt-20 bg-fff clearfix">
-    <drop-down :xianshi="xianshi" @change="xianshi = !xianshi" v-on:ee="incrementTotal"></drop-down>
+
     <ul class="bg-fff">
       <li class="w-100 border-bottom clearfix lh110 px-30 f32 pr">
         <span class="f32">收货角色名</span>
@@ -18,6 +18,7 @@
       </li>
 
     </ul>
+    <drop-down :xianshi="xianshi" @change="xianshi = !xianshi" v-on:ee="incrementTotal"></drop-down>
   </div>
 </template>
 

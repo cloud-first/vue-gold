@@ -12,8 +12,8 @@
       </li>
       <li>
         <router-link
-          :to="{path: '/vue/coins-type/list-coins?serverid=YXF16053120325978800016&areaid=YXQ16053120274791000015&gid=YX16053120241378200001&operatorId=undefined&operatorName=&gname=地下城与勇士&areaname=广东区&servername=广东1区&goodsType=3&typename=%2F%2F游戏币&gameImageUrl=',
-                query: {'list': JSON.stringify(list)} }"
+          :to="{path: '/vue/coins-type/list-coins?',
+          query: {'serverid':'YXF16053120325978800016','areaid':'YXQ16053120274791000015','gname': '地下城与勇士','areaname':'广东区','servername':'广东1区','goodsType':3,'list': JSON.stringify(list)} }"
         >
           广东一区 有历史
         </router-link>

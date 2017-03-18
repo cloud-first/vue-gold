@@ -18,7 +18,7 @@
 
     </div>
     <!---------------------------- 角色信息 ---------------------------->
-    <coins-form :url="test"></coins-form>
+    <coins-form :url="isTest"></coins-form>
     <!---------------------------- 购买 ---------------------------->
     <div class="fixed-bottom01 bg-fff px-30 py-20 pr">
       <div class="f32 color-000 lh110">价格<span class="f40 color-f75e46">￥{{buyNum/40.2|mathFilter}}</span></div>
@@ -49,7 +49,7 @@
         buyNum:'',
         isActive:false,
         msg:"订单详情",
-        test: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list).list: []
+        isTest: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list).list: []
       }
     },
     components: {

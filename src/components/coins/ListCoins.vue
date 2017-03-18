@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="listCoins">
     <coins-head :title="$route.query.gname+'/'+$route.query.areaname+'/'+$route.query.servername"></coins-head>
     <coins-fast></coins-fast>
     <coins-person></coins-person>
@@ -18,7 +18,7 @@
     data () {
       return {
         msg: 'Welcome to Your Vue.js App',
-        test: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list).list: []
+        isTest: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list).list: []
       }
     },
     components: {
