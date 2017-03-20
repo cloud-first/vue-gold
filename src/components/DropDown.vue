@@ -1,6 +1,6 @@
 <template>
 
-  <div v-if="xianshi" >
+  <div v-show="xianshi" id="drop_down">
     <div class="w-100 showlist pa">
       <ul>
         <li class="bg-fff f28 color-000 border-bottom pr" v-for="(dropDown,index) in dropDowns" @click="drop_show(dropDown,index)">
@@ -9,7 +9,6 @@
             <em v-if="index == i" class="pa coinok"></em>
           </a>
         </li>
-
       </ul>
     </div>
     <!--遮罩-->

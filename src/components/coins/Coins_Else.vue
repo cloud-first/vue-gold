@@ -2,7 +2,7 @@
   <div>
     <coins-head :title="$route.query.gname+'/'+$route.query.areaname+'/'+$route.query.servername"></coins-head>
     <!---------------------------- 金币信息 ---------------------------->
-    <div class="mt-100 bg-f6 clearfix">
+    <div class="mt-100 bg-f6 clearfix" @click="dropDrow_hide">
       <ul class="tab-2 clearfix">
         <li class="fl border-right text-center lh110 f28">
           <span class="color-888 mr-20">单价</span>1元=40.2万金
@@ -82,8 +82,12 @@
         if(this.buyNum.substr(-1, 1) == '.'){
           this.buyNum = parseInt(this.buyNum)
         }
-      }
+      },
+      dropDrow_hide:function(){
+    		document.getElementById('drop_down').style.display="none"
+    	}
     }
+    
 
   };
 </script>

@@ -16,7 +16,6 @@
         <span class="f32">我的QQ号</span>
         <input class="coin-input lh110 pa" type="text" name="" id="QQFrom"  v-model="QQ" placeholder="请输入QQ号" />
       </li>
-
     </ul>
     <drop-down :xianshi="xianshi" @change="xianshi = !xianshi" v-on:ee="incrementTotal"></drop-down>
   </div>
@@ -47,8 +46,8 @@
     },
     methods:{
         show:function(){
+        		document.getElementById('drop_down').style.display="block"
             this.xianshi=true
-
         },
         incrementTotal:function (b) {
           this.name=b

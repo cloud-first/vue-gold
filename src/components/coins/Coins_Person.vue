@@ -27,7 +27,7 @@
           </div>
         </router-link>
       </li>
-      <p id="ip" style="display: none;">
+      <p id="coins_id" style="display: none;">
         <img src="static/images/coins/loading-sm.gif">
         <span>请等待。。。</span>
       </p>
@@ -93,7 +93,7 @@
           var self = this;
           self.busy = true;
           console.log('loading... ' + new Date());
-          document.getElementById('ip').style.display="block";
+          document.getElementById('coins_id').style.display="block";
           setTimeout(function () {
             self.personLists.push(
             	{
@@ -113,11 +113,12 @@
             	
             );
             console.log('end... ' + new Date());
-            self.busy = false
-            document.getElementById('ip').style.display="none";
+            self.busy = false;
+            document.getElementById('coins_id').style.display="none";
           }, 1000)
-        },
-        a(){
+         },
+        	
+        coins_url () {
           const self = this
           this.$http.get('/static/json/data.json').then((response) => {
             setTimeout(() => {
@@ -133,7 +134,7 @@
         }
       },
       created () {
-        this.a();
+        this.coins_url();
 //        this.$... shibu shi kogn de
         this.abc = {'query':this.$query}
         console.log(this.query)

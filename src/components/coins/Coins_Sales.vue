@@ -2,7 +2,7 @@
   <div>
     <coins-head :title="$route.query.gname+'/'+$route.query.areaname+'/'+$route.query.servername"></coins-head>
     <!---------------------------- 购买信息 ---------------------------->
-    <div class="mt-100 bg-fff">
+    <div class="mt-100 bg-fff" @click="dropDrow_hide">
       <div class="px-30 py-30 border-bottom clearfix">
         <div class="fl">
           <div class="col-left01">
@@ -104,7 +104,10 @@
       },
       coins_reduce:function () {
           this.coins_num--
-      }
+      },
+      dropDrow_hide:function(){
+    		document.getElementById('drop_down').style.display="none"
+    	}
     }
 
   };
