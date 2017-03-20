@@ -5,6 +5,10 @@
       <div class="fl f28 lh110 color-000"><span class="f32 color-000 mr-20 brl pl-20">寄售交易</span></div>
       <div class="fr f28 color-888 lh110">卖家寄售在5173出售的游戏币</div>
     </div>
+    <mt-loadmore
+      :top-method="loadTop" :bottom-all-loaded="allLoaded" ref="loadmore"
+      v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="0"
+    	>
     <ul class="clearfix">
       <li class="border-bottom p-30" v-for="personList in personLists">
         <!--<router-link :to="{name:'CoinsSales', query:abc}">-->
@@ -23,16 +27,23 @@
           </div>
         </router-link>
       </li>
-
+      <p id="ip" style="display: none;">
+        <img src="static/images/coins/loading-sm.gif">
+        <span>请等待。。。</span>
+      </p>
     </ul>
+    </mt-loadmore>
   </div>
 </template>
 
 <script>
+  var count = 0;
   export default{
       name:"CoinsPerson",
       data () {
         return {
+          allLoaded:false,
+          busy:false,
           personLists:[],
           abc: null,
           query:this.$route.query,
@@ -63,6 +74,49 @@
         }
       },
       methods: {
+        loadTop(id) {
+          this.$refs.loadmore.onTopLoaded(id);
+          this.personLists.unshift({
+				      "prices": "250",
+				      "money": "500",
+				      "url": "/static/images/common/mobile.png",
+				      "kusun": "1",
+				      "perPrices":"40.08"
+				    }
+          )
+        },
+        loadBottom(id) {
+
+        },
+
+        loadMore: function () {
+          var self = this;
+          self.busy = true;
+          console.log('loading... ' + new Date());
+          document.getElementById('ip').style.display="block";
+          setTimeout(function () {
+            self.personLists.push(
+            	{
+				      "prices": "250",
+				      "money": "500",
+				      "url": "/static/images/common/mobile.png",
+				      "kusun": "1",
+				      "perPrices":"40.08"
+					    },
+					    {
+					      "prices": "250",
+					      "money": "500",
+					      "url": "/static/images/common/mobile.png",
+					      "kusun": "1",
+					      "perPrices":"40.08"
+					    }
+            	
+            );
+            console.log('end... ' + new Date());
+            self.busy = false
+            document.getElementById('ip').style.display="none";
+          }, 1000)
+        },
         a(){
           const self = this
           this.$http.get('/static/json/data.json').then((response) => {

@@ -340,3 +340,14 @@
 .brl {
 	border-left: .06rem solid #f75e46;
 }
+.mint-loadmore{
+	width: 100%;
+}
+#ip{
+	
+	background: #fff;
+	line-height: 50px;
+	font-size: 12px;
+	width: 100%;
+	text-align: center;
+}

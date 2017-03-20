@@ -9,7 +9,10 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "mint-ui": "^2.2.1",
     "vue": "^2.2.1",
+    "vue-infinite-scroll": "^2.0.0",
+    "vue-loadmore": "^2.0.0",
     "vue-resource": "^1.2.1",
     "vue-router": "^2.2.0"
   },
