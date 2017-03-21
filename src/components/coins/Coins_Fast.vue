@@ -48,6 +48,43 @@
             console.log("error")
         });
 
+      this.$http.get(
+        '/api/mobile-searchCenter-service/rs/purchaseData/getPriceConfig',
+        {
+          gameName: "地下城与勇士",
+          regionName:"广东区",
+          serverName:"广东一区",
+          gameId:"YX16060613502502300005",
+          raceName:""
+        },
+        {
+          headers: {
+            contentType: "aplication/json; charset = UTF-8",
+            dataType: 'json'
+          }
+        }
+      ).then((res) => {
+        res = res.body;
+        if (res.responseStatus.code == '00') {
+          console.log("55566555")
+
+        }
+      }, () => {
+        console.log("请求错误！");
+
+      });
+
+
+
+
+
+
+
+
+
+
+
+
 //      this.$http.post(
 //        '/api/mobile-searchCenter-service/rs/hotSearchService/queryAllHotSearch',
 //        {
