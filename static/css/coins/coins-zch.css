@@ -102,7 +102,9 @@
 	width: .5rem;
 	height: .5rem;
 }
-
+.coin-kc{
+  margin-top: .2rem
+}
 .coin-kc img {
 	width: .34rem;
 	height: .34rem;
@@ -357,7 +359,7 @@
 	width: 100%;
 }
 #coins_id{
-	
+
 	background: #fff;
 	line-height: 50px;
 	font-size: 12px;

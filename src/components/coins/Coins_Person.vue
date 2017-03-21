@@ -1,6 +1,6 @@
 <template>
   <!---------------------------- 库存信息 ---------------------------->
-  <div class="coin-kc mt-20 bg-fff">
+  <div class="coin-kc bg-fff">
     <div class="box4 border-bottom clearfix">
       <div class="fl f28 lh110 color-000"><span class="f32 color-000 mr-20 brl pl-20">寄售交易</span></div>
       <div class="fr f28 color-888 lh110">卖家寄售在5173出售的游戏币</div>
@@ -110,14 +110,14 @@
 					      "kusun": "1",
 					      "perPrices":"40.08"
 					    }
-            	
+
             );
             console.log('end... ' + new Date());
             self.busy = false;
             document.getElementById('coins_id').style.display="none";
           }, 1000)
          },
-        	
+
         coins_url () {
           const self = this
           this.$http.get('/static/json/data.json').then((response) => {

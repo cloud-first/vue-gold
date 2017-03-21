@@ -28,7 +28,7 @@
 					</div>
 				</div>
 			</div>
-    
+
   </div>
 </template>
 
@@ -67,7 +67,7 @@
           this.name=b
         },
         books:function(){
-	  
+
 	    		if(this.name==""){
 	    			this.dialog_box2=true
 	    		}
@@ -81,6 +81,7 @@
 //       console.log("-----------------------",this.url[0])
         if(this.url[0]!=undefined){
 //            this.name = this.url[0].name,
+          console.log("--------",this.url)
             this.name = localStorage.getItem('openid')
             this.phone = this.url[0].phone,
             this.QQ = this.url[0].QQ
@@ -90,8 +91,8 @@
       "drop-down": DropDown,
     },
     watch:{
-    	
-    	
+
+
     }
   }
 </script>

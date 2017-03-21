@@ -27,7 +27,13 @@ module.exports = {
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      "/api/mobile-searchCenter-service": {
+        target: "http://192.168.42.214:8133/",
+        changeOrigin: true,
+        pathRewrite: {'^/api/mobile-searchCenter-service': '/mobile-searchCenter-service'}
+      }
+    },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
     // (https://github.com/webpack/css-loader#sourcemaps)

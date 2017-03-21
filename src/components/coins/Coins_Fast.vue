@@ -8,7 +8,7 @@
     </div>
     <ul class="clearfix px-20 mt-30">
       <li class="fl text-center px-10" v-for="fastList in fastLists">
-        <router-link class="d-block f28 my-10 pt-10" :to="{name:'CoinsSome', query:$route.query}">
+        <router-link class="d-block f28 my-10 pt-10" :to="{name:'CoinsSome', query:{'fastListMoney':fastList.money,'areaid':'YXQ16053120274791000015','gname': '地下城与勇士','areaname':'广东区','servername':'广东1区','goodsType':3,'list': $route.query.list}}">
           <b class="d-block f32 pb-5 color-f75e46 ">{{fastList.money}}元</b> {{fastList.money}}万金
         </router-link>
       </li>
@@ -28,6 +28,14 @@
     data () {
       return {
         fastLists:[],
+        list: {
+          list: [{
+            "name": localStorage.getItem('openid'),
+            "phone": "18738161475",
+            "QQ": "601819456"
+          }
+          ]
+        }
       }
     },
     created:function(){
@@ -38,8 +46,33 @@
         }, 500)
         },(response)=>{
             console.log("error")
-          })
+        });
+
+//      this.$http.post(
+//        '/api/mobile-searchCenter-service/rs/hotSearchService/queryAllHotSearch',
+//        {
+//            pageIndex:4,
+//            poageSize:1
+//        },
+//        {
+//            headers:{
+//                contentType:"aplication/json; charset = UTF-8",
+//                dataType:'json'
+//            }
+//        }
+//
+//      ).then((res) => {
+//          res = res.body;
+//          if(res.responseStatus.code == '00'){
+//              console.log("sssssssss",res.result)
+//
+//          }
+//      })
+
+
+
         }
+
 
   }
 </script>
