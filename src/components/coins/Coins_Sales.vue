@@ -33,11 +33,15 @@
     <!---------------------------- 购买 ---------------------------->
     <div class="fixed-bottom01 bg-fff px-30 py-20 pr">
       <div class="f32 color-000 lh110">合计<span class="f40 color-f75e46">￥501</span></div>
-      <button class="coin-btn bg-f75e46 lh110 color-fff f36 pa">立即购买</button>
+  	<button class="coin-btn bg-f75e46 lh110 color-fff f36 pa"  @click="dialogBox">立即购买</button>
     </div>
     <!---------------------------- 角色信息 ---------------------------->
     <coins-form :url="isTest"></coins-form>
-
+		 <!---------------------------- 遮料层 ---------------------------->
+	  	<dialog-cover v-if="dialog_cover"></dialog-cover>
+	  		<!--弹出框-->
+	  	<dialog-box v-if="dialog_box"></dialog-box>
+	  </div> 	
   </div>
 </template>
 
@@ -45,6 +49,8 @@
   import Vue from 'vue'
   import Head from "../Head.vue"
   import CoinsForm from "./Coins_Form.vue"
+  import DialogCover from "../DialogCover.vue"
+  import DialogBox from "../DialogBox.vue"
   Vue.filter('mathFilter',function(value){
 //      console.log(value)
 //    if (!value) { return ''}
@@ -62,6 +68,8 @@
       return {
         buyNum:'',
         isActive:false,
+        dialog_box:false,
+      	dialog_cover:false,
         msg:"订单详情",
         isTest: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list).list: [],
         coins_num:5
@@ -70,6 +78,8 @@
     components: {
       "coins-head": Head,
       "coins-form": CoinsForm,
+      "dialog-cover":DialogCover,
+      "dialog-box":DialogBox
 
     },
     watch:{
@@ -107,7 +117,11 @@
       },
       dropDrow_hide:function(){
     		document.getElementById('drop_down').style.display="none"
-    	}
+    	},
+    	 dialogBox:function(){
+        	this.dialog_box = true;
+        	this.dialog_cover =true;
+        },
     }
 
   };

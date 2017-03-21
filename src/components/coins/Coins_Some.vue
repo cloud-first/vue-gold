@@ -14,30 +14,11 @@
     <div class="fixed-bottom01 bg-fff px-30 py-20 pr">
       <div class="f32 color-000 lh110">价格<span class="f40 color-f75e46">￥0</span></div>
       <button class="coin-btn bg-f75e46 lh110 color-fff f36 pa" @click="dialogBox">立即购买</button>
-    </div>
-    <!---------------------------- 遮料层 ---------------------------->
-    <div class="dialog_cover" v-if="dialog_cover"></div>
-    <!--弹出框-->
-			<div class="dialog-box2" @click="dropDrow_hide" v-if="dialog_box2">
-				<div class="dialog-main">
-					<div class="dialog-body color-fff" id="errortx">
-						<i class="coinx mr-30"><img src="static/images/coins/coinx.png"></i>请填写收货角色姓名
-					</div>
-				</div>
-			</div>
-
-			<!--弹出框-->
-			<div class="dialog-box bg-fff" id="dialog_show2" v-if="dialog_box">
-				<div class="dialog-main">
-					<div class="dialog-body" id="errortx">很抱歉，该商品类型手机版尚未开通,建议您去电脑版发布出售。</div>
-					<div class="dialog-foot">
-						<a class="dialog_close " href="javascript:void(0);" id="Ise" @click="dialogBox_hide">知道了</a>
-					</div>
-				</div>
-			</div>
-    
-    
-    
+    </div>  
+     <!---------------------------- 遮料层 ---------------------------->
+	  	<dialog-cover v-if="dialog_cover"></dialog-cover>
+	  		<!--弹出框-->
+	  	<dialog-box v-if="dialog_box"></dialog-box>
 </div>
 </template>
 
@@ -45,6 +26,8 @@
   import Vue from 'vue'
   import Head from "../Head.vue"
   import CoinsForm from "./Coins_Form.vue"
+  import DialogCover from "../DialogCover.vue"
+  import DialogBox from "../DialogBox.vue"
   Vue.filter('mathFilter',function(value){
 //      console.log(value)
 //    if (!value) { return ''}
@@ -63,7 +46,6 @@
           buyNum:'',
           isActive:false,
           msg:"订单详情",
-          dialog_box2:false,
           dialog_box:false,
           dialog_cover:false,
           isTest: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list).list: []
@@ -72,6 +54,8 @@
       components: {
         "coins-head": Head,
         "coins-form": CoinsForm,
+        "dialog-cover":DialogCover,
+      	"dialog-box":DialogBox
 
       },
       watch:{
@@ -108,10 +92,7 @@
         	this.dialog_box = true;
         	this.dialog_cover =true;
         },
-        dialogBox_hide:function(){
-        	this.dialog_box = false;
-        	this.dialog_cover =false;
-        }
+      
       }
 
   };
