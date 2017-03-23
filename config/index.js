@@ -25,14 +25,20 @@ module.exports = {
     env: require('./dev.env'),
     port: 8080,
     autoOpenBrowser: true,
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: '',
     assetsPublicPath: '/',
     proxyTable: {
-      "/api/mobile-searchCenter-service": {
-        target: "http://192.168.42.214:8133/",
+      "/api/mobile-goods-service": {
+        target: "http://192.168.40.244:8086/",
         changeOrigin: true,
-        pathRewrite: {'^/api/mobile-searchCenter-service': '/mobile-searchCenter-service'}
-      }
+        pathRewrite: {'^/api/mobile-goods-service': '/mobile-goods-service'}
+      },
+      "/api/mobile-user-service": {
+        target: "http://192.168.40.244:8082/",
+        changeOrigin: true,
+        pathRewrite: {'^/api/mobile-user-service': '/mobile-user-service'}
+      },
+
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

@@ -65,7 +65,7 @@
     methods: {
       a(){
         const self = this
-        this.$http.get('/static/json/data.json').then((response) => {
+        this.$http.get('/json/data.json').then((response) => {
           setTimeout(() => {
 //            console.log(response.body.lists)
             response.body.lists.forEach(function (i, n) {

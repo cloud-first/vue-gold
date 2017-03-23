@@ -3,7 +3,7 @@
     <coins-head :title="msg"></coins-head>
     <!---------------------------- 订单取消 ---------------------------->
     <div class="mt-100 px-30 or-title lh130 pr">
-      <img class="pa w-100" src="/static/images/coins/border-bg.png" />
+      <img class="pa w-100" src="/images/coins/border-bg.png" />
       <span class="pl-20 f32">交易取消</span>
     </div>
     <!---------------------------- 商品信息 ---------------------------->
@@ -67,11 +67,10 @@
     },
     components: {
       "coins-head": Head,
-
     },
     created () {
       const self = this
-      this.$http.get('/static/json/data.json').then((response)=>{
+      this.$http.get('/json/data.json').then((response)=>{
           this.personLists = response.body.lists
       },(response)=>{
         console.log("error")

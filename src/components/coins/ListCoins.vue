@@ -9,10 +9,7 @@
 <script>
   import Head from "../Head.vue"
   import CoinsFast from "./Coins_Fast.vue"
-  import CoinsForm from "./Coins_Form.vue"
   import CoinsPerson from "./Coins_Person.vue"
-  import CoinsSome from "./Coins_Some.vue"
-
   export default {
     name: "ListCoins",
     data () {
@@ -23,29 +20,35 @@
         coinsFast: this.$route.query.status == '2' ? false : true
       }
     },
+    components: {
+      "coins-head": Head,
+      "coins-fast": CoinsFast,
+      "coins-person": CoinsPerson,
+
+    },
     created () {
 
-      this.$http.get(
-        '/api/mobile-searchCenter-service/rs/purchaseData/getGoldMallOpenedStatus',
-        {
-          gameName: "地下城与勇士",
-        },
-        {
-          headers: {
-            contentType: "aplication/json; charset = UTF-8",
-            dataType: 'json'
-          }
-        }
-      ).then((res) => {
-        res = res.body;
-        if (res.responseStatus.code == '00') {
-          console.log("55566555")
-
-        }
-      }, () => {
-        console.log("请求错误！");
-        resolve({list: []})
-      });
+//      this.$http.get(
+//        '/api/mobile-searchCenter-service/rs/purchaseData/getGoldMallOpenedStatus',
+//        {
+//          gameName: "地下城与勇士",
+//        },
+//        {
+//          headers: {
+//            contentType: "aplication/json; charset = UTF-8",
+//            dataType: 'json'
+//          }
+//        }
+//      ).then((res) => {
+//        res = res.body;
+//        if (res.responseStatus.code == '00') {
+//          console.log("55566555")
+//
+//        }
+//      }, () => {
+//        console.log("请求错误！");
+//        resolve({list: []})
+//      });
 
 
     },
@@ -55,14 +58,7 @@
 
       }
     },
-    components: {
-      "coins-head": Head,
-      "coins-fast": CoinsFast,
-      "coins-from": CoinsForm,
-      "coins-from": CoinsForm,
-      "coins-person": CoinsPerson,
-      "coins-some": CoinsSome
-    }
+
   }
 </script>
 

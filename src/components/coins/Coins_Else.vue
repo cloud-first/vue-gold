@@ -28,7 +28,7 @@
 	  	<dialog-cover v-if="dialog_cover"></dialog-cover>
 	  		<!--弹出框-->
 	  	<dialog-box v-if="dialog_box"></dialog-box>
-	  </div> 	
+	  </div>
 </template>
 
 <script>
@@ -53,7 +53,7 @@
     data() {
       return {
         buyNum:'',
-        isActive:false,
+        //isActive:false,
      		dialog_box:false,
       	dialog_cover:false,
         msg:"订单详情",
@@ -65,45 +65,116 @@
       "coins-form": CoinsForm,
       "dialog-cover":DialogCover,
       "dialog-box":DialogBox
-      
+
     },
     watch:{
-      buyNum:
-        function (val, oldVal){
-          if(val==""){
-            return
+//      buyNum:
+//        function (val, oldVal){
+//          if(val==""){
+//            return
+//          }
+//          var patrn = /^\d+(\.\d{1,2}|\.)?$/;
+//          console.log(this.buyNum)
+//          if(patrn.test(val)){
+//            this.buyNum=this.buyNum
+//          }else{
+//            this.buyNum=oldVal
+//          }
+//          if(val/40.2>20||val/40.2==20){
+//            this.isActive=true
+//          }else{
+//            this.isActive=false
+//          }
+//
+//        }
+    },
+    created(){
+      this.$http.get(
+        '/api/mobile-user-service/rs/account/login/loginbyverifycode?callback=jQuery1111005482065579084616_1490073131896&promotionUserId=0&phone=18958478815&verifyCode=7777&_=1490073131897',
+        {},
+        {
+          headers: {
+            contentType: "aplication/json; charset = UTF-8",
+            dataType: 'json'
           }
-          var patrn = /^\d+(\.\d{1,2}|\.)?$/;
-          console.log(this.buyNum)
-          if(patrn.test(val)){
-            this.buyNum=this.buyNum
-          }else{
-            this.buyNum=oldVal
-          }
-          if(val/40.2>20||val/40.2==20){
-            this.isActive=true
-          }else{
-            this.isActive=false
-          }
-
         }
+      ).then((res) => {
+
+      }, () => {
+        console.log("请求错误l！");
+
+      });
     },
     methods:{
-      blur:function(){
-        if(this.buyNum.substr(-1, 1) == '.'){
-          this.buyNum = parseInt(this.buyNum)
-        }
-      },
+//      blur:function(){
+//        if(this.buyNum.substr(-1, 1) == '.'){
+//          this.buyNum = parseInt(this.buyNum)
+//        }
+//      },
       dropDrow_hide:function(){
     		document.getElementById('drop_down').style.display="none"
     	},
     	dialogBox:function(){
         	this.dialog_box = true;
         	this.dialog_cover =true;
-        },
-	    
+
+        this.$http.post(
+          '/api/mobile-goods-service/rs/purchaseData/addOrder',
+          {
+//            gameName: this.$route.query.gname,
+//            region:this.$route.query.areaname,
+//            server:this.$route.query.servername,
+//            gameId:"YX16053120241378200001",
+//            regionId:"YXQ16053120274791000015",
+//            serverId:"YXF16053120325978800016",
+//            receiver:this.name,
+//            mobileNumber:this.phone,
+//            qq:this.QQ,
+//            goldCount:20,
+//            unitPrice:0.00749,
+            gameName: "地下城与勇士",
+            region:"广东区",
+            server:"广东1区",
+            gameId:"YX16053120241378200001",
+            regionId:"YXQ16053120274791000015",
+            serverId:"YXF16053120325978800016",
+            receiver:"赵岩",
+            mobileNumber:"18738161475",
+            qq:"601819456",
+            goldCount:"2000",
+            unitPrice:"0.00749",
+          },
+          {
+            headers: {
+              contentType: "aplication/json; charset = UTF-8",
+              dataType: 'json'
+            }
+          }
+        ).then((res) => {
+          res = res.body;
+          console.log("55566555")
+          if (res.responseStatus.code == '00') {
+            console.log("购买成功")
+
+          }
+        }, () => {
+          console.log("请求错误！");
+          resolve({list: []})
+        });
+
+
+
+
+
+
+
+
+
+
+      },
+
     }
-    
+
 
   };
 </script>

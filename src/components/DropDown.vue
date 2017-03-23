@@ -44,7 +44,7 @@ export default {
     },
     created:function(){
       const selfs = this
-      this.$http.get('/static/json/data.json').then((response)=>{
+      this.$http.get('/json/data.json').then((response)=>{
         setTimeout(() => {
           selfs.dropDowns = response.body.juese
         }, 500)

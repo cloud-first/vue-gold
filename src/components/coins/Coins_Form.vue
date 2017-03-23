@@ -6,7 +6,7 @@
       <li class="w-100 border-bottom clearfix lh110 px-30 f32 pr">
         <span class="f32">收货角色名</span>
         <input class="coin-input lh110 pa" type="text" name="" value="" id="username" v-model="name" v-on:blur="books" placeholder="请输入接收游戏币的角色名" />
-        <i class="pa" v-if="isTrue" id="divselect" @click="show()"><img src="/static/images/coins/coinuser.png"/></i>
+        <i class="pa" v-if="isTrue" id="divselect" @click="show()"><img src="/images/coins/coinuser.png"/></i>
       </li>
       <li class="w-100 border-bottom clearfix lh110 px-30 f32 pr">
         <span class="f32">我的手机号</span>
@@ -24,7 +24,7 @@
 			<div class="dialog-box2"  v-if="dialog_box2">
 				<div class="dialog-main">
 					<div class="dialog-body color-fff" id="errortx">
-						<i class="coinx mr-30" @click="dialogBox2_hide"><img src="static/images/coins/coinx.png"></i>请填写收货角色姓名
+						<i class="coinx mr-30" @click="dialogBox2_hide"><img src="/images/coins/coinx.png"></i>请填写收货角色姓名
 					</div>
 				</div>
 			</div>
@@ -77,7 +77,7 @@
     		}
 
     },
-    created:function(){
+    created(){
 //       console.log("-----------------------",this.url[0])
         if(this.url[0]!=undefined){
 //            this.name = this.url[0].name,
@@ -85,15 +85,15 @@
             this.name = localStorage.getItem('openid')
             this.phone = this.url[0].phone,
             this.QQ = this.url[0].QQ
+            this.$parent.name = this.name;
+            this.$parent.phone = this.phone;
+            this.$parent.QQ = this.QQ;
         }
     },
     components: {
       "drop-down": DropDown,
     },
-    watch:{
 
-
-    }
   }
 </script>
 <style>

@@ -56,7 +56,33 @@
           ]
         }
       }
-    }
+    },
+    created () {
+
+      this.$http.get(
+        '/api/mobile-searchCenter-service/rs/purchaseData/getGoldMallOpenedStatus',
+        {
+          gameName: "地下城与勇士",
+        },
+        {
+          headers: {
+            contentType: "aplication/json; charset = UTF-8",
+            dataType: 'json'
+          }
+        }
+      ).then((res) => {
+        res = res.body;
+        if (res.responseStatus.code == '00') {
+          console.log("55566555")
+
+        }
+      }, () => {
+        console.log("请求错误！");
+        resolve({list: []})
+      });
+
+
+    },
   }
 </script>
 

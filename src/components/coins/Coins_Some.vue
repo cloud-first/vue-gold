@@ -5,7 +5,7 @@
     <div class="mt-100 bg-f6 clearfix" @click="dropDrow_hide">
       <div class="bg-fff clearfix px-30 pr">
         <div class="fl lh110 f32 color-000">购买数量<span class="coin-num f32 pa">{{$route.query.fastListMoney}}万金</span></div>
-        <div class="fr lh110 f28 color-666">单价 1元=40万金</div>
+        <div class="fr lh110 f28 color-666">单价 1元={{$route.query.unitPrice}}万金</div>
       </div>
     </div>
     <!---------------------------- 角色信息 ---------------------------->
@@ -46,7 +46,12 @@
           msg:"订单详情",
           dialog_box:false,
           dialog_cover:false,
-          isTest: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list).list: []
+          isTest: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list).list: [],
+          name:'',
+          phone:'',
+          QQ:'',
+          perprice:'40',
+          fastListMoney:this.$route.query.fastListMoney
         }
       },
       components: {
@@ -54,6 +59,11 @@
         "coins-form": CoinsForm,
         "dialog-cover":DialogCover,
       	"dialog-box":DialogBox
+
+      },
+      created () {
+
+
 
       },
       watch:{
@@ -89,6 +99,63 @@
         dialogBox:function(){
         	this.dialog_box = true;
         	this.dialog_cover =true;
+
+          this.$http.post(
+            '/api/mobile-goods-service/rs/purchaseData/getOrder',
+            {
+//              gameName: this.$route.query.gname,
+//              regionName:this.$route.query.areaname,
+//              serverName:this.$route.query.servername,
+//              gameId:this.$route.query.areaid,
+//              raceName:"",
+//              receiver:this.name,
+//              mobileNumber:this.phone,
+//              qq:this.QQ,
+//              goldCount:this.fastListMoney,
+//              unitPrice:this.perprice
+              gameName: "地下城与勇士",
+              regionName:this.$route.query.areaname,
+              serverName:this.$route.query.servername,
+              gameId:this.$route.query.areaid,
+              raceName:"",
+              receiver:this.name,
+              mobileNumber:this.phone,
+              qq:this.QQ,
+              goldCount:this.fastListMoney,
+              unitPrice:this.perprice
+
+
+
+
+            },
+            {
+              headers: {
+                contentType: "aplication/json; charset = UTF-8",
+                dataType: 'json'
+              }
+            }
+          ).then((res) => {
+            res = res.body;
+            console.log("55566555")
+            if (res.responseStatus.code == '00') {
+              console.log("55566555")
+
+            }
+          }, () => {
+            console.log("请求错误！");
+            resolve({list: []})
+          });
+
+
+
+
+
+
+
+
+
+
+
         },
 
       }

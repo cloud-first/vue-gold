@@ -15,7 +15,7 @@
         </div>
         <div class="fr">
           <span class="d-block f36 color-m1 text-right">￥10</span>
-          <span class="d-block coin-s2 pt-20 f28 color-888"><em class="mr-20"><img src="static/images/coins/mobile.png" /></em><em class="coin-e1">库存 1件</em></span>
+          <span class="d-block coin-s2 pt-20 f28 color-888"><em class="mr-20"><img src="/images/coins/mobile.png" /></em><em class="coin-e1">库存 1件</em></span>
         </div>
       </div>
       <div class="box border-bottom">
@@ -41,7 +41,7 @@
 	  	<dialog-cover v-if="dialog_cover"></dialog-cover>
 	  		<!--弹出框-->
 	  	<dialog-box v-if="dialog_box"></dialog-box>
-	  </div> 	
+	  </div>
   </div>
 </template>
 
@@ -121,7 +121,41 @@
     	 dialogBox:function(){
         	this.dialog_box = true;
         	this.dialog_cover =true;
-        },
+         this.$http.post(
+           '/api/mobile-searchCenter-service/rs/purchaseData/newOrder',
+           {
+             gameName: this.$route.query.gname,
+             regionName:this.$route.query.areaname,
+             serverName:this.$route.query.servername,
+             gameId:this.$route.query.areaid,
+             raceName:"",
+             receiver:this.name,
+             mobileNumber:this.phone,
+             qq:this.QQ,
+             goldCount:this.fastListMoney,
+             unitPrice:this.perprice
+
+           },
+           {
+             headers: {
+               contentType: "aplication/json; charset = UTF-8",
+               dataType: 'json'
+             }
+           }
+         ).then((res) => {
+           res = res.body;
+           console.log("购买")
+           if (res.responseStatus.code == '00') {
+             console.log("55566555")
+
+           }
+         }, () => {
+           console.log("请求错误！");
+           resolve({list: []})
+         });
+
+
+       },
     }
 
   };
