@@ -18,6 +18,9 @@
           广东一区 有历史
         </router-link>
       </li>
+      <li style="height: 30px">
+       <button @click="checkout" style="height: 30px;width: 200px">查找</button>
+      </li>
       <li>
         <router-link
           :to="{path: '/vue/coins-type/list-coins?',
@@ -50,8 +53,6 @@
         list: {
           list: [{
             "name": localStorage.getItem('openid'),
-            "phone": "18738161475",
-            "QQ": "601819456"
             }
           ]
         }
@@ -60,10 +61,8 @@
     created () {
 
       this.$http.get(
-        '/api/mobile-searchCenter-service/rs/purchaseData/getGoldMallOpenedStatus',
-        {
-          gameName: "地下城与勇士",
-        },
+        '/api/mobile-user-service/rs/account/login/loginbyverifycode?callback=jQuery1111005482065579084616_1490073131896&promotionUserId=0&phone=18958478815&verifyCode=7777&_=1490073131897',
+        {},
         {
           headers: {
             contentType: "aplication/json; charset = UTF-8",
@@ -71,18 +70,40 @@
           }
         }
       ).then((res) => {
-        res = res.body;
-        if (res.responseStatus.code == '00') {
-          console.log("55566555")
 
-        }
       }, () => {
-        console.log("请求错误！");
-        resolve({list: []})
+        console.log("请求错误l！");
+
       });
 
 
+
     },
+    methods:{
+      checkout:function () {
+        this.$http.get(
+          '/api/mobile-goods-service/rs/purchaseData/selectHistoryRole',
+          {
+            params: {
+              regionName: "广东区",
+              serverName: "广东1区",
+              gameName: "地下城与勇士",
+            }
+          },
+          {
+            headers: {
+              contentType: "aplication/json; charset = UTF-8",
+              dataType: 'json'
+            }
+          }
+        ).then((res) => {
+
+        }, () => {
+          console.log("请求错误！");
+
+        });
+      }
+    }
   }
 </script>
 

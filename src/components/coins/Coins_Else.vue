@@ -104,6 +104,8 @@
         console.log("请求错误l！");
 
       });
+
+
     },
     methods:{
 //      blur:function(){
@@ -141,7 +143,7 @@
             receiver:"赵岩",
             mobileNumber:"18738161475",
             qq:"601819456",
-            goldCount:"2000",
+            goldCount:"5",
             unitPrice:"0.00749",
           },
           {
@@ -162,6 +164,32 @@
           resolve({list: []})
         });
 
+        this.$http.get(
+          '/api/mobile-goods-service/rs/purchaseData/addHistoryRole',
+          {
+            params: {
+              regionName: "广东区",
+              serverName: "广东1区",
+              gameName: "地下城与勇士",
+              mobileNumber:"18738161475",
+              roleName:"蹲着也要吃饭",
+              qqNumber:"601819456"
+
+
+            }
+          },
+          {
+            headers: {
+              contentType: "aplication/json; charset = UTF-8",
+              dataType: 'json'
+            }
+          }
+        ).then((res) => {
+          console.log("添加角色成功！");
+        }, () => {
+          console.log("请求错误！");
+
+        });
 
 
 

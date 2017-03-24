@@ -7,7 +7,7 @@
     </div>
     <mt-loadmore
       :top-method="loadTop" :bottom-all-loaded="allLoaded" ref="loadmore"
-      v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="0"
+      v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10"
     >
       <ul class="clearfix">
         <li class="border-bottom p-30" v-for="personList in personLists">
@@ -74,7 +74,7 @@
         }
       }
     },
-    mounted(){
+    created(){
 
     },
     methods: {
