@@ -18,11 +18,11 @@
 
     </div>
     <!---------------------------- 角色信息 ---------------------------->
-    <coins-form :url="isTest"></coins-form>
+    <coins-form :url="isTest" v-on:formContent="coinsElse" v-on:formQqname="formQqname" v-on:formPhoneName="formPhoneName"></coins-form>
     <!---------------------------- 购买 ---------------------------->
     <div class="fixed-bottom01 bg-fff px-30 py-20 pr">
       <div class="f32 color-000 lh110">价格<span class="f40 color-f75e46">￥{{buyNum/40.2|mathFilter}}</span></div>
-      <button class="coin-btn bg-f75e46 lh110 color-fff f36 pa" @click="dialogBox">立即购买</button>
+      <button class="coin-btn bg-f75e46 lh110 color-fff f36 pa" @click="dialogBox">立即购买{{receiver}}</button>
     </div>
      <!---------------------------- 遮料层 ---------------------------->
 	  	<dialog-cover v-if="dialog_cover"></dialog-cover>
@@ -33,31 +33,32 @@
 
 <script>
   import Vue from 'vue'
-  import CoinsForm from "./Coins_Form.vue"
+  import CoinsForm from "./CoinsForm.vue"
   import Head from "../Head.vue"
   import DialogCover from "../DialogCover.vue"
   import DialogBox from "../DialogBox.vue"
   Vue.filter('mathFilter',function(value){
-//      console.log(value)
-//    if (!value) { return ''}
     return value.toFixed(2)
   });
   export default{
-    props:{
-      buyPrice: {
-        type: Number,
-        default: 40.2
-      }
-    },
     name:"CoinsSome",
     data() {
       return {
         buyNum:'',
-        //isActive:false,
      		dialog_box:false,
       	dialog_cover:false,
         msg:"订单详情",
+        receiver:"",
+        qqName:'',
+        phoneName:'',
         isTest: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list).list: []
+
+      }
+    },
+    props:{
+      buyPrice: {
+        type: Number,
+        default: 40.2
       }
     },
     components: {
@@ -68,25 +69,7 @@
 
     },
     watch:{
-//      buyNum:
-//        function (val, oldVal){
-//          if(val==""){
-//            return
-//          }
-//          var patrn = /^\d+(\.\d{1,2}|\.)?$/;
-//          console.log(this.buyNum)
-//          if(patrn.test(val)){
-//            this.buyNum=this.buyNum
-//          }else{
-//            this.buyNum=oldVal
-//          }
-//          if(val/40.2>20||val/40.2==20){
-//            this.isActive=true
-//          }else{
-//            this.isActive=false
-//          }
-//
-//        }
+
     },
     created(){
       this.$http.get(
@@ -108,18 +91,29 @@
 
     },
     methods:{
-//      blur:function(){
-//        if(this.buyNum.substr(-1, 1) == '.'){
-//          this.buyNum = parseInt(this.buyNum)
-//        }
-//      },
       dropDrow_hide:function(){
     		document.getElementById('drop_down').style.display="none"
+        console.log(this.name)
     	},
+      //收货角色名
+      coinsElse:function (str) {
+        console.log("我是父组件传来的",str)
+        this.receiver = str
+      },
+      //qq名
+      formQqname:function (str) {
+        console.log("我是父组件传来的",str)
+        this.qqName = str
+      },
+      //手机号
+      formPhoneName:function (str) {
+        console.log("我是父组件传来的",str)
+        this.phoneName = str
+      },
     	dialogBox:function(){
+        const self = this
         	this.dialog_box = true;
         	this.dialog_cover =true;
-
         this.$http.post(
           '/api/mobile-goods-service/rs/purchaseData/addOrder',
           {
@@ -134,16 +128,16 @@
 //            qq:this.QQ,
 //            goldCount:20,
 //            unitPrice:0.00749,
-            gameName: "地下城与勇士",
-            region:"广东区",
-            server:"广东1区",
-            gameId:"YX16053120241378200001",
-            regionId:"YXQ16053120274791000015",
-            serverId:"YXF16053120325978800016",
-            receiver:"赵岩",
-            mobileNumber:"18738161475",
-            qq:"601819456",
-            goldCount:"5",
+            gameName: this.$route.query.gname,
+            region:this.$route.query.areaname,
+            server:this.$route.query.servername,
+            gameId:this.$route.query.gameId,
+            regionId:this.$route.query.regionId,
+            serverId:this.$route.query.serverId,
+            receiver:this.receiver,
+            mobileNumber:this.phoneName,
+            qq:this.qqName,
+            goldCount:this.buyNum,
             unitPrice:"0.00749",
           },
           {
@@ -172,7 +166,7 @@
               serverName: "广东1区",
               gameName: "地下城与勇士",
               mobileNumber:"18738161475",
-              roleName:"蹲着也要吃饭",
+              roleName:this.name,
               qqNumber:"601819456"
 
 

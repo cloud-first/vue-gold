@@ -50,7 +50,10 @@
     </div>
     <!---------------------------- 联系客服 ---------------------------->
     <div class="fixed-bottom border-top bg-fff coin-kf pr-30">
-      <button class="bg-fff color-f75e46 lh82 my-20 f32 fr">联系客服</button>
+      <button class="bg-fff color-f75e46 lh82 my-20 f32 fr" @click="getGold">对接商城状态</button>
+      <button class="bg-fff color-f75e46 lh82 my-20 f32 fr" @click="purchaseData">我的订单列表</button>
+      <button class="bg-fff color-f75e46 lh82 my-20 f32 fr" @click="myBuyOrderList">我的订单详情</button>
+      <!--<button class="bg-fff color-f75e46 lh82 my-20 f32 fr" @click="show">联系客服</button>-->
     </div>
   </div>
 </template>
@@ -70,11 +73,103 @@
     },
     created () {
       const self = this
-      this.$http.get('/json/data.json').then((response)=>{
-          this.personLists = response.body.lists
-      },(response)=>{
-        console.log("error")
-      })
+//      this.$http.get('/json/data.json').then((response)=>{
+//          this.personLists = response.body.lists
+//      },(response)=>{
+//        console.log("error")
+//      }),
+      this.$http.get(
+        '/api/mobile-user-service/rs/account/login/loginbyverifycode?callback=jQuery1111005482065579084616_1490073131896&promotionUserId=0&phone=18958478815&verifyCode=7777&_=1490073131897',
+        {},
+        {
+          headers: {
+            contentType: "aplication/json; charset = UTF-8",
+            dataType: 'json'
+          }
+        }
+      ).then((res) => {
+
+      }, () => {
+        console.log("请求错误l！");
+
+      });
+    },
+    methods:{
+      getGold:function () {
+        this.$http.get(
+          '/api/mobile-goods-service/rs/purchaseData/getGoldMallOpenedStatus',
+          {
+            params: {
+              gameName: "地下城与勇士",
+            }
+          },
+          {
+            headers: {
+              contentType: "aplication/json; charset = UTF-8",
+              dataType: 'json'
+            }
+          }
+        ).then((res) => {
+
+        }, () => {
+          console.log("请求错误l！");
+
+        });
+
+
+
+
+      },
+      //订单列表
+      purchaseData:function () {
+          this.$http.get(
+            '/api/mobile-goods-service/rs/purchaseData/myBuyOrderList',
+            {
+              params: {
+                orderState: "1",
+                pageSize: "5",
+                start: "1"
+              }
+            },
+            {
+              headers: {
+                contentType: "aplication/json; charset = UTF-8",
+                dataType: 'json'
+              }
+            }
+          ).then((res) => {
+            console.log("添加角色成功！");
+          }, () => {
+            console.log("请求错误！");
+
+          });
+
+      },
+      myBuyOrderList:function () {
+        this.$http.get(
+          '/api/mobile-goods-service/rs/purchaseData/getOrder',
+          {
+            params: {
+              orderId: "YX1703250003245",
+            }
+          },
+          {
+            headers: {
+              contentType: "aplication/json; charset = UTF-8",
+              dataType: 'json'
+            }
+          }
+        ).then((res) => {
+          console.log("角色成功！");
+        }, () => {
+          console.log("请求错误！");
+
+        });
+
+      },
+
+
+
     }
 
   }

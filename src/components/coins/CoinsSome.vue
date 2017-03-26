@@ -9,7 +9,7 @@
       </div>
     </div>
     <!---------------------------- 角色信息 ---------------------------->
-    <coins-form :url="isTest"></coins-form>
+    <coins-form :url="isTest" v-on:formContent="coinsElse" v-on:formQqname="formQqname" v-on:formPhoneName="formPhoneName"></coins-form>
     <!---------------------------- 购买 ---------------------------->
     <div class="fixed-bottom01 bg-fff px-30 py-20 pr">
       <div class="f32 color-000 lh110">价格<span class="f40 color-f75e46">￥{{$route.query.fastListMoney/40}}</span></div>
@@ -25,7 +25,7 @@
 <script>
   import Vue from 'vue'
   import Head from "../Head.vue"
-  import CoinsForm from "./Coins_Form.vue"
+  import CoinsForm from "./CoinsForm.vue"
   import DialogCover from "../DialogCover.vue"
   import DialogBox from "../DialogBox.vue"
   Vue.filter('mathFilter',function(value){
@@ -47,11 +47,12 @@
           dialog_box:false,
           dialog_cover:false,
           isTest: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list).list: [],
-          name:'',
-          phone:'',
-          QQ:'',
+          receiver:"",
+          qqName:'',
+          phoneName:'',
           perprice:'40',
-          fastListMoney:this.$route.query.fastListMoney
+          fastListMoney:this.$route.query.fastListMoney,
+          receiver:"",
         }
       },
       components: {
@@ -62,71 +63,58 @@
 
       },
       created () {
-
-
-
       },
       watch:{
-//        buyNum:
-//        function (val, oldVal){
-//            if(val==""){
-//                return
-//            }
-//            var patrn = /^\d+(\.\d{1,2}|\.)?$/;
-//            console.log(this.buyNum)
-//            if(patrn.test(val)){
-//              this.buyNum=this.buyNum
-//            }else{
-//              this.buyNum=oldVal
-//            }
-//            if(val/40.2>20||val/40.2==20){
-//              this.isActive=true
-//            }else{
-//              this.isActive=false
-//            }
-//
-//        }
       },
       methods:{
-//        blur:function(){
-//          if(this.buyNum.substr(-1, 1) == '.'){
-//            this.buyNum = parseInt(this.buyNum)
-//          }
-//        },
         dropDrow_hide:function(){
         	document.getElementById('drop_down').style.display="none"
         },
+        //收货角色名
+        coinsElse:function (str) {
+          console.log("我是父组件传来的",str)
+          this.receiver = str
+        },
+        //qq名
+        formQqname:function (str) {
+          console.log("我是父组件传来的",str)
+          this.qqName = str
+        },
+        //手机号
+        formPhoneName:function (str) {
+          console.log("我是父组件传来的",str)
+          this.phoneName = str
+        },
         dialogBox:function(){
-        	this.dialog_box = true;
-        	this.dialog_cover =true;
-
+          const self = this
+          this.dialog_box = true;
+          this.dialog_cover =true;
+          console.log(this.name)
           this.$http.post(
-            '/api/mobile-goods-service/rs/purchaseData/getOrder',
+            '/api/mobile-goods-service/rs/purchaseData/addOrder',
             {
-//              gameName: this.$route.query.gname,
-//              regionName:this.$route.query.areaname,
-//              serverName:this.$route.query.servername,
-//              gameId:this.$route.query.areaid,
-//              raceName:"",
-//              receiver:this.name,
-//              mobileNumber:this.phone,
-//              qq:this.QQ,
-//              goldCount:this.fastListMoney,
-//              unitPrice:this.perprice
+//            gameName: this.$route.query.gname,
+//            region:this.$route.query.areaname,
+//            server:this.$route.query.servername,
+//            gameId:"YX16053120241378200001",
+//            regionId:"YXQ16053120274791000015",
+//            serverId:"YXF16053120325978800016",
+//            receiver:this.name,
+//            mobileNumber:this.phone,
+//            qq:this.QQ,
+//            goldCount:20,
+//            unitPrice:0.00749,
               gameName: "地下城与勇士",
-              regionName:this.$route.query.areaname,
-              serverName:this.$route.query.servername,
-              gameId:this.$route.query.areaid,
-              raceName:"",
-              receiver:this.name,
-              mobileNumber:this.phone,
-              qq:this.QQ,
-              goldCount:this.fastListMoney,
-              unitPrice:this.perprice
-
-
-
-
+              region:"广东区",
+              server:"广东1区",
+              gameId:this.$route.query.gameId,
+              regionId:this.$route.query.regionId,
+              serverId:this.$route.query.serverId,
+              receiver:this.receiver,
+              mobileNumber:this.phoneName,
+              qq:this.qqName,
+              goldCount:this.buyNum,
+              unitPrice:"0.00749",
             },
             {
               headers: {
@@ -138,12 +126,39 @@
             res = res.body;
             console.log("55566555")
             if (res.responseStatus.code == '00') {
-              console.log("55566555")
+              console.log("购买成功")
 
             }
           }, () => {
             console.log("请求错误！");
             resolve({list: []})
+          });
+
+          this.$http.get(
+            '/api/mobile-goods-service/rs/purchaseData/addHistoryRole',
+            {
+              params: {
+                regionName: "广东区",
+                serverName: "广东1区",
+                gameName: "地下城与勇士",
+                mobileNumber:"18738161475",
+                roleName:this.name,
+                qqNumber:"601819456"
+
+
+              }
+            },
+            {
+              headers: {
+                contentType: "aplication/json; charset = UTF-8",
+                dataType: 'json'
+              }
+            }
+          ).then((res) => {
+            console.log("添加角色成功！");
+          }, () => {
+            console.log("请求错误！");
+
           });
 
 

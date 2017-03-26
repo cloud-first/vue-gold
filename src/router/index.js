@@ -21,37 +21,3 @@ export default new Router({
   ]
 })
 
-
-// export default new Router({
-//   routes: [
-//     {
-//       path: '/list-coins',
-//       // name: 'ListCoins',
-//       component: ListCoins,
-//       children: [{
-//         path: "",
-//         name: "CoinsFast",
-//         component: CoinsFast
-//       }, {
-//         path: "coins-some",
-//         name: "CoinsSome",
-//         component: CoinsSome
-//       },
-//       ]
-//     },
-//     {
-//       path: "/menu",
-//       name: 'Menu',
-//       component: Menu
-//     },
-//     {
-//       path: "/coins-order",
-//       name: 'CoinsOrder',
-//       component: CoinsOrder
-//     },
-//     {
-//       path: "*",
-//       redirect: "/menu"
-//     }
-//   ]
-// })

@@ -8,8 +8,8 @@
 
 <script>
   import Head from "../Head.vue"
-  import CoinsFast from "./Coins_Fast.vue"
-  import CoinsPerson from "./Coins_Person.vue"
+  import CoinsFast from "./CoinsFast.vue"
+  import CoinsPerson from "./CoinsPerson.vue"
   export default {
     name: "ListCoins",
     data () {
@@ -56,6 +56,8 @@
       if (this.$route.query.status == '2') {
         document.getElementsByClassName("coin-kc")[0].style.marginTop=0.97+"rem";
 
+      }else{
+        document.getElementsByClassName("coin-kc")[0].style.marginTop=0.2+"rem";
       }
     },
 

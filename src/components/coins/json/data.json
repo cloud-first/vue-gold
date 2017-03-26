@@ -65,25 +65,25 @@
   ],
   "juese" : [
       {
-        "name": "吃盖浇饭"
+        "receiver": "吃盖浇饭"
       },
       {
-        "name":"德玛西亚"
+        "receiver":"德玛西亚"
       },
       {
-        "name":"金刚狼"
+        "receiver":"金刚狼"
       },
       {
-        "name":"极限特工"
+        "receiver":"极限特工"
       },
       {
-        "name":"露丝"
+        "receiver":"露丝"
       },
       {
-        "name":"迪塞尔"
+        "receiver":"迪塞尔"
       },
       {
-        "name":"鸣人"
+        "receiver":"鸣人"
       }
   ]
 

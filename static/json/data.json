@@ -65,25 +65,25 @@
   ],
   "juese" : [
       {
-        "name": "吃盖浇饭"
+        "roleName": "吃盖浇饭"
       },
       {
-        "name":"德玛西亚"
+        "roleName":"德玛西亚"
       },
       {
-        "name":"金刚狼"
+        "roleName":"金刚狼"
       },
       {
-        "name":"极限特工"
+        "roleName":"极限特工"
       },
       {
-        "name":"露丝"
+        "roleName":"露丝"
       },
       {
-        "name":"迪塞尔"
+        "roleName":"迪塞尔"
       },
       {
-        "name":"鸣人"
+        "roleName":"鸣人"
       }
   ]
 

@@ -5,16 +5,16 @@
     <ul class="bg-fff">
       <li class="w-100 border-bottom clearfix lh110 px-30 f32 pr">
         <span class="f32">收货角色名</span>
-        <input class="coin-input lh110 pa" type="text" name="" value="" id="username" v-model="name" v-on:blur="books" placeholder="请输入接收游戏币的角色名" />
+        <input class="coin-input lh110 pa" type="text" name="" value="" id="username" v-model="receiver" v-on:blur="books" placeholder="请输入接收游戏币的角色名" />
         <i class="pa" v-if="isTrue" id="divselect" @click="show()"><img src="/images/coins/coinuser.png"/></i>
       </li>
       <li class="w-100 border-bottom clearfix lh110 px-30 f32 pr">
         <span class="f32">我的手机号</span>
-        <input class="coin-input lh110 pa" type="text" name="" id="phoneFrom" v-model="phone" placeholder="请输入手机号" />
+        <input class="coin-input lh110 pa" type="text" name="" id="phoneFrom" v-model="phoneName" placeholder="请输入手机号" />
       </li>
       <li class="w-100 border-bottom clearfix lh110 px-30 f32 pr">
         <span class="f32">我的QQ号</span>
-        <input class="coin-input lh110 pa" type="text" name="" id="QQFrom"  v-model="QQ" placeholder="请输入QQ号" />
+        <input class="coin-input lh110 pa" type="text" name="" id="QQFrom"  v-model="qqName" placeholder="请输入QQ号" />
       </li>
     </ul>
     <drop-down :xianshi="xianshi" @change="xianshi = !xianshi" v-on:ee="incrementTotal"></drop-down>
@@ -48,27 +48,32 @@
       return {
         msg: 'Welcome to Your Vue.js App',
         xianshi:false,
-        name:'',
+        receiver:'',
         phone:'',
-        QQ:'',
+        qqName:'',
+        phoneName:"",
         dialog_cover:false,
         dialog_box2:false,
         isTrue:(this.url[0] == undefined)?false:true
 
       }
     },
+    components: {
+      "drop-down": DropDown,
+    },
     methods:{
         show:function(){
         		document.getElementById('drop_down').style.display="block"
         		this.dialog_box2=false
             this.xianshi=true
+            console.log(this.receiver)
         },
         incrementTotal:function (b) {
-          this.name=b
+          this.receiver=b
         },
         books:function(){
 
-	    		if(this.name==""){
+	    		if(this.receiver==""){
 	    			this.dialog_box2=true
 	    		}
     		},
@@ -78,21 +83,27 @@
 
     },
     created(){
-//       console.log("-----------------------",this.url[0])
         if(this.url[0]!=undefined){
-//            this.name = this.url[0].name,
-          console.log("--------",this.url)
-            this.name = localStorage.getItem('openid')
-            this.phone = this.url[0].phone,
-            this.QQ = this.url[0].QQ
-            this.$parent.name = this.name;
-            this.$parent.phone = this.phone;
-            this.$parent.QQ = this.QQ;
+          console.log("--------",this.receiver)
+            this.receiver = localStorage.getItem('openid')
+        }else{
+          this.receiver=""
         }
     },
-    components: {
-      "drop-down": DropDown,
+    watch:{
+      receiver(val){
+          this.$emit('formContent',this.receiver)
+        },
+      qqName(val){
+        this.$emit('formQqname',this.qqName)
+      },
+      phoneName(val){
+        this.$emit('formPhoneName',this.phoneName)
+      }
+
+
     },
+
 
   }
 </script>

@@ -4,34 +4,34 @@
 
 
 const CoinsType = resolve => {
-  require.ensure(['./../components/coins/Coins_Type.vue'],()=>{
-    resolve(require('./../components/coins/Coins_Type.vue'));
-  },'Coins_Type');
+  require.ensure(['./../components/coins/CoinsType.vue'],()=>{
+    resolve(require('./../components/coins/CoinsType.vue'));
+  },'CoinsType');
 };
 const ListCoins = resolve => {
   require.ensure(['./../components/coins/ListCoins.vue'],()=>{
     resolve(require('./../components/coins/ListCoins.vue'));
-  },'Coins_Type');
+  },'CoinsType');
 };
 const CoinsOrder = resolve => {
   require.ensure(['./../components/coins/Coins_Order.vue'],()=>{
     resolve(require('./../components/coins/Coins_Order.vue'));
-  },'Coins_Type');
+  },'CoinsType');
 };
 const CoinsSome = resolve => {
-  require.ensure(['./../components/coins/Coins_Some.vue'],()=>{
-    resolve(require('./../components/coins/Coins_Some.vue'));
-  },'Coins_Type');
+  require.ensure(['./../components/coins/CoinsSome.vue'],()=>{
+    resolve(require('./../components/coins/CoinsSome.vue'));
+  },'CoinsType');
 };
 const CoinsElse = resolve => {
-  require.ensure(['./../components/coins/Coins_Else.vue'],()=>{
-    resolve(require('./../components/coins/Coins_Else.vue'));
-  },'Coins_Type');
+  require.ensure(['./../components/coins/CoinsElse.vue'],()=>{
+    resolve(require('./../components/coins/CoinsElse.vue'));
+  },'CoinsType');
 };
 const CoinsSales = resolve => {
-  require.ensure(['./../components/coins/Coins_Sales.vue'],()=>{
-    resolve(require('./../components/coins/Coins_Sales.vue'));
-  },'Coins_Type');
+  require.ensure(['./../components/coins/CoinsSales.vue'],()=>{
+    resolve(require('./../components/coins/CoinsSales.vue'));
+  },'CoinsType');
 };
 
 export const coinsType =
