@@ -36,7 +36,7 @@
   	<button class="coin-btn bg-f75e46 lh110 color-fff f36 pa"  @click="dialogBox">立即购买</button>
     </div>
     <!---------------------------- 角色信息 ---------------------------->
-    <coins-form :url="isTest" v-on:formContent="coinsElse" v-on:formQqname="formQqname" v-on:formPhoneName="formPhoneName"></coins-form>
+    <coins-form :url="isTest" v-on:formRoleName="formRoleName" v-on:formQqname="formQqname" v-on:formPhoneName="formPhoneName"></coins-form>
 		 <!---------------------------- 遮料层 ---------------------------->
 	  	<dialog-cover v-if="dialog_cover"></dialog-cover>
 	  		<!--弹出框-->
@@ -85,7 +85,6 @@
 
     },
     watch:{
-
       buyNum:
         function (val, oldVal){
           if(val==""){
@@ -108,7 +107,7 @@
     },
     methods:{
       //收货角色名
-      coinsElse:function (str) {
+      formRoleName:function (str) {
         console.log("我是父组件传来的",str)
         this.receiver = str
       },
@@ -143,20 +142,9 @@
          this.$http.post(
            '/api/mobile-goods-service/rs/purchaseData/addOrder',
            {
-//            gameName: this.$route.query.gname,
-//            region:this.$route.query.areaname,
-//            server:this.$route.query.servername,
-//            gameId:"YX16053120241378200001",
-//            regionId:"YXQ16053120274791000015",
-//            serverId:"YXF16053120325978800016",
-//            receiver:this.name,
-//            mobileNumber:this.phone,
-//            qq:this.QQ,
-//            goldCount:20,
-//            unitPrice:0.00749,
-             gameName: "地下城与勇士",
-             region:"广东区",
-             server:"广东1区",
+             gameName: this.$route.query.gname,
+             region:this.$route.query.areaname,
+             server:this.$route.query.servername,
              gameId:this.$route.query.gameId,
              regionId:this.$route.query.regionId,
              serverId:this.$route.query.serverId,
@@ -188,12 +176,12 @@
            '/api/mobile-goods-service/rs/purchaseData/addHistoryRole',
            {
              params: {
-               regionName: "广东区",
-               serverName: "广东1区",
-               gameName: "地下城与勇士",
-               mobileNumber:"18738161475",
-               roleName:this.name,
-               qqNumber:"601819456"
+               regionName: this.$route.query.areaname,
+               serverName:this.$route.query.servername,
+               gameName:  this.$route.query.gname,
+               mobileNumber:this.phoneName,
+               roleName:this.receiver,
+               qqNumber:this.qqName,
 
 
              }

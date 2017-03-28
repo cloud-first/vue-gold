@@ -17,7 +17,7 @@
         <input class="coin-input lh110 pa" type="text" name="" id="QQFrom"  v-model="qqName" placeholder="请输入QQ号" />
       </li>
     </ul>
-    <drop-down :xianshi="xianshi" @change="xianshi = !xianshi" v-on:ee="incrementTotal"></drop-down>
+    <drop-down :xianshi="xianshi" @change="xianshi = !xianshi" v-on:ee="incrementTotal" v-on:ff="mobileNumberTotal" v-on:gg="qqNumberTotal"></drop-down>
     <!---------------------------- 遮料层 ---------------------------->
     <div class="dialog_cover" v-if="dialog_cover"></div>
 			<!--弹出框-->
@@ -38,7 +38,6 @@
     name: "CoinsForm",
     props:{
       url: {
-//        type: Array,
         default:function() {
             return []
         }
@@ -67,9 +66,45 @@
         		this.dialog_box2=false
             this.xianshi=true
             console.log(this.receiver)
+         /// 获取角色名
+          this.$http.get(
+            '/api/mobile-goods-service/rs/purchaseData/selectHistoryRole',
+            {
+              params: {
+                regionName: "广东区",
+                serverName: "广东1区",
+                gameName: "地下城与勇士",
+              }
+            },
+            {
+              headers: {
+                contentType: "aplication/json; charset = UTF-8",
+                dataType: 'json'
+              }
+            }
+          ).then((res) => {
+            //console.log("请求角色成功");
+//        console.log(res.body.data[0].roleName)
+//        localStorage.openid = res.body.data[0].roleName
+//        selfs.dropDowns = res.body.data
+          }, () => {
+            console.log("请求错误！");
+
+          });
+
+
         },
         incrementTotal:function (b) {
+          console.log("1",b)
           this.receiver=b
+        },
+       mobileNumberTotal:function (b) {
+         console.log("2",b)
+          this.phoneName=b
+        },
+        qqNumberTotal:function (b) {
+          console.log("3",b)
+          this.qqName=b
         },
         books:function(){
 
@@ -84,15 +119,23 @@
     },
     created(){
         if(this.url[0]!=undefined){
-          console.log("--------",this.receiver)
-            this.receiver = localStorage.getItem('openid')
+            this.receiver = localStorage.getItem('openid');
+            this.qqName = localStorage.getItem('qqNumber');
+            this.phoneName = localStorage.getItem('mobileNumber');
         }else{
-          this.receiver=""
+          this.receiver="";
+          this.qqName="";
+          this.phoneName="";
         }
+    },
+    mounted(){
+      this.$emit('formRoleName',this.receiver)
+      this.$emit('formQqname',this.qqName)
+      this.$emit('formPhoneName',this.phoneName)
     },
     watch:{
       receiver(val){
-          this.$emit('formContent',this.receiver)
+          this.$emit('formRoleName',this.receiver)
         },
       qqName(val){
         this.$emit('formQqname',this.qqName)

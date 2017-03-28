@@ -11,13 +11,19 @@ import {coinsType} from './Coins_Type.js'
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path:"/menu",
       name:'Menu',
       component:Menu
     },
-    coinsType
+    coinsType,
+    {
+      path: '*',
+      redirect: "/menu",
+    },
+
   ]
 })
 

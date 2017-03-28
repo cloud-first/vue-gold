@@ -29,12 +29,13 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       "/api/mobile-goods-service": {
-        target: "http://192.168.40.244:8086/",
+        // target: "http://192.168.40.244:8086/",
+        target: "http://192.168.40.130:8086/",
         changeOrigin: true,
         pathRewrite: {'^/api/mobile-goods-service': '/mobile-goods-service'}
       },
       "/api/mobile-user-service": {
-        target: "http://192.168.40.244:8082/",
+        target: "http://192.168.40.130:8082/",
         changeOrigin: true,
         pathRewrite: {'^/api/mobile-user-service': '/mobile-user-service'}
       },

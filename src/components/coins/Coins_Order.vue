@@ -73,13 +73,8 @@
     },
     created () {
       const self = this
-//      this.$http.get('/json/data.json').then((response)=>{
-//          this.personLists = response.body.lists
-//      },(response)=>{
-//        console.log("error")
-//      }),
       this.$http.get(
-        '/api/mobile-user-service/rs/account/login/loginbyverifycode?callback=jQuery1111005482065579084616_1490073131896&promotionUserId=0&phone=18958478815&verifyCode=7777&_=1490073131897',
+        '/api/mobile-user-service/rs/account/login/loginbyverifycode?callback=jQuery1111005482065579084616_1490073131896&promotionUserId=0&phone="M2_18958478815"&verifyCode=7777&_=1490073131897',
         {},
         {
           headers: {
@@ -95,12 +90,13 @@
       });
     },
     methods:{
+      //商城状态
       getGold:function () {
         this.$http.get(
           '/api/mobile-goods-service/rs/purchaseData/getGoldMallOpenedStatus',
           {
             params: {
-              gameName: "地下城与勇士",
+              gameName: this.$route.query.gname,
             }
           },
           {
@@ -115,10 +111,6 @@
           console.log("请求错误l！");
 
         });
-
-
-
-
       },
       //订单列表
       purchaseData:function () {
@@ -128,7 +120,7 @@
               params: {
                 orderState: "1",
                 pageSize: "5",
-                start: "1"
+                start: "0"
               }
             },
             {
@@ -150,7 +142,7 @@
           '/api/mobile-goods-service/rs/purchaseData/getOrder',
           {
             params: {
-              orderId: "YX1703250003245",
+              orderId: "YX1703280003300",
             }
           },
           {

@@ -5,10 +5,10 @@
     <div class="mt-100 bg-f6 clearfix" @click="dropDrow_hide">
       <ul class="tab-2 clearfix">
         <li class="fl border-right text-center lh110 f28">
-          <span class="color-888 mr-20">单价</span>1元=40.2万金
+          <span class="color-888 mr-20">单价</span>1元={{$route.query.unPrice}}万金
         </li>
         <li class="fl text-center lh110 f28">
-          <span class="color-888 mr-20">库存</span>1,202,540万金
+          <span class="color-888 mr-20">库存</span>{{$route.query.totalCount}}万金
         </li>
       </ul>
       <div class="bg-fff clearfix px-30 pr">
@@ -18,7 +18,7 @@
 
     </div>
     <!---------------------------- 角色信息 ---------------------------->
-    <coins-form :url="isTest" v-on:formContent="coinsElse" v-on:formQqname="formQqname" v-on:formPhoneName="formPhoneName"></coins-form>
+    <coins-form :url="isTest" v-on:formRoleName="formRoleName" v-on:formQqname="formQqname" v-on:formPhoneName="formPhoneName"></coins-form>
     <!---------------------------- 购买 ---------------------------->
     <div class="fixed-bottom01 bg-fff px-30 py-20 pr">
       <div class="f32 color-000 lh110">价格<span class="f40 color-f75e46">￥{{buyNum/40.2|mathFilter}}</span></div>
@@ -52,7 +52,6 @@
         qqName:'',
         phoneName:'',
         isTest: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list).list: []
-
       }
     },
     props:{
@@ -68,7 +67,7 @@
       "dialog-box":DialogBox
 
     },
-    watch:{
+    mounted:function(){
 
     },
     created(){
@@ -87,16 +86,15 @@
         console.log("请求错误l！");
 
       });
-
-
     },
     methods:{
+        //隐藏下拉框
       dropDrow_hide:function(){
     		document.getElementById('drop_down').style.display="none"
         console.log(this.name)
     	},
       //收货角色名
-      coinsElse:function (str) {
+      formRoleName:function (str) {
         console.log("我是父组件传来的",str)
         this.receiver = str
       },
@@ -112,22 +110,11 @@
       },
     	dialogBox:function(){
         const self = this
-        	this.dialog_box = true;
-        	this.dialog_cover =true;
+        this.dialog_box = true;
+        this.dialog_cover =true;
         this.$http.post(
           '/api/mobile-goods-service/rs/purchaseData/addOrder',
           {
-//            gameName: this.$route.query.gname,
-//            region:this.$route.query.areaname,
-//            server:this.$route.query.servername,
-//            gameId:"YX16053120241378200001",
-//            regionId:"YXQ16053120274791000015",
-//            serverId:"YXF16053120325978800016",
-//            receiver:this.name,
-//            mobileNumber:this.phone,
-//            qq:this.QQ,
-//            goldCount:20,
-//            unitPrice:0.00749,
             gameName: this.$route.query.gname,
             region:this.$route.query.areaname,
             server:this.$route.query.servername,
@@ -138,7 +125,7 @@
             mobileNumber:this.phoneName,
             qq:this.qqName,
             goldCount:this.buyNum,
-            unitPrice:"0.00749",
+            unitPrice:this.$route.query.unitPrice,
           },
           {
             headers: {
@@ -162,13 +149,12 @@
           '/api/mobile-goods-service/rs/purchaseData/addHistoryRole',
           {
             params: {
-              regionName: "广东区",
-              serverName: "广东1区",
-              gameName: "地下城与勇士",
-              mobileNumber:"18738161475",
-              roleName:this.name,
-              qqNumber:"601819456"
-
+              regionName: this.$route.query.areaname,
+              serverName:this.$route.query.servername,
+              gameName:  this.$route.query.gname,
+              mobileNumber:this.phoneName,
+              roleName:this.receiver,
+              qqNumber:this.qqName,
 
             }
           },
@@ -182,22 +168,10 @@
           console.log("添加角色成功！");
         }, () => {
           console.log("请求错误！");
-
         });
 
-
-
-
-
-
-
-
-
       },
-
     }
-
-
   };
 </script>
 

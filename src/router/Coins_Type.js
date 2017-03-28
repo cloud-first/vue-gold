@@ -1,8 +1,6 @@
 /**
  * Created by zy on 2017/3/16.
  */
-
-
 const CoinsType = resolve => {
   require.ensure(['./../components/coins/CoinsType.vue'],()=>{
     resolve(require('./../components/coins/CoinsType.vue'));
@@ -72,6 +70,7 @@ export const coinsType =
         },
         name: 'CoinsSales',
       }
+
 
     ]
   }

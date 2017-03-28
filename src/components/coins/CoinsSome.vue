@@ -5,11 +5,11 @@
     <div class="mt-100 bg-f6 clearfix" @click="dropDrow_hide">
       <div class="bg-fff clearfix px-30 pr">
         <div class="fl lh110 f32 color-000">购买数量<span class="coin-num f32 pa">{{$route.query.fastListMoney}}万金</span></div>
-        <div class="fr lh110 f28 color-666">单价 1元={{$route.query.unitPrice}}万金</div>
+        <div class="fr lh110 f28 color-666">单价 1元={{$route.query.unPrice}}万金</div>
       </div>
     </div>
     <!---------------------------- 角色信息 ---------------------------->
-    <coins-form :url="isTest" v-on:formContent="coinsElse" v-on:formQqname="formQqname" v-on:formPhoneName="formPhoneName"></coins-form>
+    <coins-form :url="isTest" v-on:formRoleName="formRoleName" v-on:formQqname="formQqname" v-on:formPhoneName="formPhoneName"></coins-form>
     <!---------------------------- 购买 ---------------------------->
     <div class="fixed-bottom01 bg-fff px-30 py-20 pr">
       <div class="f32 color-000 lh110">价格<span class="f40 color-f75e46">￥{{$route.query.fastListMoney/40}}</span></div>
@@ -67,11 +67,12 @@
       watch:{
       },
       methods:{
+        //隐藏下拉框
         dropDrow_hide:function(){
         	document.getElementById('drop_down').style.display="none"
         },
         //收货角色名
-        coinsElse:function (str) {
+        formRoleName:function (str) {
           console.log("我是父组件传来的",str)
           this.receiver = str
         },
@@ -93,28 +94,17 @@
           this.$http.post(
             '/api/mobile-goods-service/rs/purchaseData/addOrder',
             {
-//            gameName: this.$route.query.gname,
-//            region:this.$route.query.areaname,
-//            server:this.$route.query.servername,
-//            gameId:"YX16053120241378200001",
-//            regionId:"YXQ16053120274791000015",
-//            serverId:"YXF16053120325978800016",
-//            receiver:this.name,
-//            mobileNumber:this.phone,
-//            qq:this.QQ,
-//            goldCount:20,
-//            unitPrice:0.00749,
-              gameName: "地下城与勇士",
-              region:"广东区",
-              server:"广东1区",
+              gameName: this.$route.query.gname,
+              region:this.$route.query.areaname,
+              server:this.$route.query.servername,
               gameId:this.$route.query.gameId,
               regionId:this.$route.query.regionId,
               serverId:this.$route.query.serverId,
               receiver:this.receiver,
               mobileNumber:this.phoneName,
               qq:this.qqName,
-              goldCount:this.buyNum,
-              unitPrice:"0.00749",
+              goldCount:this.$route.query.fastListMoney,
+              unitPrice:this.$route.query.unitPrice,
             },
             {
               headers: {
@@ -138,14 +128,12 @@
             '/api/mobile-goods-service/rs/purchaseData/addHistoryRole',
             {
               params: {
-                regionName: "广东区",
-                serverName: "广东1区",
-                gameName: "地下城与勇士",
-                mobileNumber:"18738161475",
-                roleName:this.name,
-                qqNumber:"601819456"
-
-
+                regionName: this.$route.query.areaname,
+                serverName:this.$route.query.servername,
+                gameName:  this.$route.query.gname,
+                mobileNumber:this.phoneName,
+                roleName:this.receiver,
+                qqNumber:this.qqName,
               }
             },
             {
@@ -160,16 +148,6 @@
             console.log("请求错误！");
 
           });
-
-
-
-
-
-
-
-
-
-
 
         },
 

@@ -33,64 +33,81 @@ export default {
       },
       drop_show:function (dropDown,index) {
         console.log(dropDown.roleName,index)
-
+        self = this;
         this.i = index;
         localStorage.setItem("num",index)
         localStorage.setItem("openid",dropDown.roleName)
         this.$emit('ee',dropDown.roleName)
+        //获取角色名
+        this.$http.get(
+          '/api/mobile-goods-service/rs/purchaseData/selectHistoryRole',
+          {
+            params: {
+              regionName: this.$route.query.areaname,
+              serverName: this.$route.query.servername,
+              gameName: this.$route.query.gname,
+            }
+          },
+          {
+            headers: {
+              contentType: "aplication/json; charset = UTF-8",
+              dataType: 'json'
+            }
+          }
+        ).then((res) => {
+
+          console.log("请求角色成功");
+          console.log(res.data.data)
+          res.data.data.forEach(function (item) {
+            console.log(item.roleName)
+            if(dropDown.roleName == item.roleName){
+              localStorage.setItem("openid",item.roleName)
+              localStorage.setItem("mobileNumber",item.mobileNumber)
+              localStorage.setItem("qqNumber",item.qqNumber)
+              self.$emit('ff',item.mobileNumber)
+              self.$emit('gg',item.qqNumber)
+            }
+          })
+//          if(){
+//
+//          }
+              // localStorage.openid =res.data.data[0].roleName
+
+        }, () => {
+          console.log("请求错误！");
+
+        });
 
       }
 
     },
-    created:function(){
-      const selfs = this
-      this.$http.get('/json/data.json').then((response)=>{
-          console.log(response.body.juese)
-        setTimeout(() => {
-          selfs.dropDowns = response.body.juese
-        }, 500)
-      },(response)=>{
-        console.log("error")
-      })
+    mounted:function(){
+      //获取角色名
 
-      //  获取角色名
-//      this.$http.get(
-//        '/api/mobile-goods-service/rs/purchaseData/selectHistoryRole',
-//        {
-//          params: {
-//            regionName: "广东区",
-//            serverName: "广东1区",
-//            gameName: "地下城与勇士",
-//          }
-//        },
-//        {
-//          headers: {
-//            contentType: "aplication/json; charset = UTF-8",
-//            dataType: 'json'
-//          }
-//        }
-//      ).then((res) => {
-//        console.log(res.body.data[0].roleName)
-//        localStorage.openid = res.body.data[0].roleName
-//        selfs.dropDowns = res.body.data
-//      }, () => {
-//        console.log("请求错误！");
-//
-//      });
+        this.$http.get(
+          '/api/mobile-goods-service/rs/purchaseData/selectHistoryRole',
+          {
+            params: {
+              regionName: this.$route.query.areaname,
+              serverName: this.$route.query.servername,
+              gameName: this.$route.query.gname,
+            }
+          },
+          {
+            headers: {
+              contentType: "aplication/json; charset = UTF-8",
+              dataType: 'json'
+            }
+          }
+        ).then((res) => {
+                console.log("请求角色成功");
+                console.log(res.data.data)
+//                localStorage.openid =res.data.data[0].roleName
+                this.dropDowns =res.data.data
+              }, () => {
+                console.log("请求错误！");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        });
 
 
 
