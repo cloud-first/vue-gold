@@ -28,17 +28,80 @@ module.exports = {
     assetsSubDirectory: '',
     assetsPublicPath: '/',
     proxyTable: {
-      "/api/mobile-goods-service": {
+      //线上
+
+
+      "/login/api/mobile-category-service": {
+        target: "http://myxb.5173.com:93/",
+        changeOrigin: true,
+        pathRewrite: {'^/login/api/mobile-category-service': '/api/mobile-category-service'}
+      },
+      "/login/api/mobile-sms-service": {
+        target: "http://myxb.5173.com:93/",
+        changeOrigin: true,
+        pathRewrite: {'^/login/api': '/api'}
+      },
+      // "/api/mobile-user-service": {
+      //   target: "http://myxb.5173.com:93/",
+      //   changeOrigin: true,
+      //   // pathRewrite: {'^/api/mobile-user-service': '/mobile-user-service'}
+      // },
+
+      "/api": {
         // target: "http://192.168.40.244:8086/",
-        target: "http://192.168.40.130:8086/",
+        // target: "http://192.168.40.130:8086/",
+        target: "http://myxb.5173.com:93/",
         changeOrigin: true,
-        pathRewrite: {'^/api/mobile-goods-service': '/mobile-goods-service'}
+
       },
-      "/api/mobile-user-service": {
-        target: "http://192.168.40.130:8082/",
-        changeOrigin: true,
-        pathRewrite: {'^/api/mobile-user-service': '/mobile-user-service'}
-      },
+      // "/gamegold-facade-frontend": {
+      //   // target: "http://192.168.40.244:8086/",
+      //   // target: "http://192.168.40.130:8086/",
+      //   target: "http://yxbmall.5173.com/",
+      //   changeOrigin: true,
+      //
+      // },
+      // "/api/mobile-goods-service": {
+      //   // target: "http://192.168.40.244:8086/",
+      //   // target: "http://192.168.40.244:8086/",
+      //   // target: "http://192.168.40.130:8086/",
+      //   target: "http://192.168.40.130:8086/",
+      //   changeOrigin: true,
+      //   pathRewrite: {'^/api/mobile-goods-service': '/mobile-goods-service'}
+      // },
+      /**
+       * 登入开始
+       */
+
+      // "/login/api/mobile-category-service": {
+      //   target: "http://mn.5173.cn/",
+      //     changeOrigin: true,
+      //     pathRewrite: {'^/login/api/mobile-category-service': '/api/mobile-category-service'}
+      // },
+      // "/login/api/mobile-sms-service": {
+      //   target: "http://mn.5173.cn/",
+      //     changeOrigin: true,
+      //     pathRewrite: {'^/login/api': '/api'}
+      // },
+      // "/api/mobile-user-service": {
+      //   target: "http://mn.5173.cn/",
+      //     changeOrigin: true,
+      //   // pathRewrite: {'^/api/mobile-user-service': '/mobile-user-service'}
+      // },
+      /**
+       *  ---- 结束 ------
+       */
+      // http://192.168.40.130:8086/mobile-goods-service/rs
+      // "/api/mobile-goods-service": {
+      //   target: "http://192.168.40.130:8086/",
+      //   changeOrigin: true,
+      //   pathRewrite: {'^/api/mobile-goods-service': '/mobile-goods-service'}
+      // }
+      // "/api/mobile-goods-service": {
+      //   target: "http://myxb.5173.com:93/",
+      //   changeOrigin: true,
+      //   pathRewrite: {'^/api/mobile-goods-service': '/mobile-goods-service'}
+      // }
 
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

@@ -6,6 +6,6 @@
 
 
 <style scoped>
-  @import "/css/fost-base.css";
-  @import "/css/coins/coins-zch.css";
+  @import "~css/fost-base.css";
+  @import "~css/coins/coins-zch.css";
 </style>

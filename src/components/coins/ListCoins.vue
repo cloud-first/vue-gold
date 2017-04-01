@@ -7,13 +7,15 @@
 </template>
 
 <script>
-  import Head from "../Head.vue"
+  import Head from "../publicCoins/Head.vue"
   import CoinsFast from "./CoinsFast.vue"
   import CoinsPerson from "./CoinsPerson.vue"
   export default {
     name: "ListCoins",
     data () {
       return {
+
+
         msg: 'Welcome to Your Vue.js App',
         isTest: (typeof this.$route.query.list == 'string') ? JSON.parse(this.$route.query.list).list : [],
         coinsFast: true,
