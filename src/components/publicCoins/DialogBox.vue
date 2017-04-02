@@ -4,7 +4,7 @@
 			<div class="dialog-main">
 				<div class="dialog-body" id="errortx">{{title}}</div>
 					<div class="dialog-foot">
-						<a class="dialog_close " href="javascript:void(0);" id="Ise">知道了</a>
+						<a class="dialog_close " href="javascript:void(0);" id="Ise">朕知道了</a>
 					</div>
 				</div>
 		</div>

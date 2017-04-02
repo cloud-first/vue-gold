@@ -13,14 +13,14 @@
         <li class="border-bottom p-30" v-for="personList in personLists">
           <!--<router-link :to="{name:'CoinsSales', query:abc}">-->
           <router-link
-            :to="{name:'CoinsSales',query:{'deliveryNum':personList.deliveryNum,'unPrice':personList.unPrice,'unitNum':personList.unitNum,'unitName':personList.unitName,'gname': $route.query.gname,'areaname':$route.query.areaname,'servername':$route.query.servername,'goodsType':3,'gameId' : $route.query.gameId,'regionId' : $route.query.regionId,'serverId' : $route.query.serverId,'list': $route.query.list}}">
+            :to="{name:'CoinsSales',query:{'deliveryNum':personList.deliveryNum,'numMoney':0.02115*personList.unitNum,'unPrice':personList.unPrice,'unitNum':personList.unitNum,'unitName':personList.unitName,'gname': $route.query.gname,'areaname':$route.query.areaname,'servername':$route.query.servername,'goodsType':3,'gameId' : $route.query.gameId,'regionId' : $route.query.regionId,'serverId' : $route.query.serverId,'list': $route.query.list}}">
             <div class="clearfix">
               <span class="fl f32 color-010101">{{personList.unitNum}}{{personList.unitName}}</span>
-              <b class="fr f32 color-f75e46">{{personList.money}}元</b>
+              <b class="fr f32 color-f75e46">{{0.02115*personList.unitNum|mathFilter}}元</b>
             </div>
             <div class="clearfix mt-25">
               <div class="fl f28 color-010101">
-                <span class="color-888">单价</span>1元={{personList.perPrices}}万金
+                <span class="color-888">单价</span>1元=47.28万金
               </div>
               <div class="fr">
                 <i class="mr-20"><img src="~images/coins/mobile.png"></i><span class="f28 va15 color-888">库存 {{personList.deliveryNum}}件</span>
@@ -39,6 +39,10 @@
 
 <script>
   var count = 0;
+  import Vue from 'vue'
+  Vue.filter('mathFilter',function(value){
+    return value.toFixed(2)
+  });
   export default{
     name: "CoinsPerson",
     data () {
@@ -105,9 +109,10 @@
           }
         ).then((res) => {
           console.log(res.data.goodsEOList)
-          res.data.goodsEOList.forEach(function(item){
+          res.data.goodsEOList.forEach(function(item,index){
             console.log(item)
             self.personLists.push(item)
+
           })
 
 

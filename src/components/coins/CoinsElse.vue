@@ -68,7 +68,7 @@
         smBox:false,
         smboxMessage:"",
         dialog_box2:false,
-        isTest: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list): [],
+        isTest: (typeof this.url == 'string')? this.url: [],
         indicator:false,
         maximum:this.$route.query.totalCount
       }
@@ -80,6 +80,13 @@
       "dialog-box":DialogBox,
       "dialog-smbox":Smbox,
 
+    },
+    props:{
+      url: {
+        default:function() {
+          return []
+        }
+      }
     },
     mounted:function(){
 
@@ -148,6 +155,10 @@
           this.smBox=true;
           this.smboxMessage="请输入购买数量";
           return false
+        }else if(this.buyNum*this.$route.query.unitPrice<20){
+          this.smBox=true;
+          this.smboxMessage="购买金额需要大于20元";
+          return false;
         }else if(this.receiver==""){
           this.smBox=true;
           this.smboxMessage="请填写收货角色姓名";
@@ -240,7 +251,7 @@
             }else{
                 this.dialog_box = true;
                this.dialog_cover =true;
-               this.boxMessage = "库存不足"
+               this.boxMessage = "抱歉，手慢一步，库存已不足"
             }
           }, () => {
               console.log("请求错误！");

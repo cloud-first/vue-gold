@@ -81,28 +81,6 @@
       });
 
 
-//      this.$http.post(
-//        '/api/mobile-searchCenter-service/rs/hotSearchService/queryAllHotSearch',
-//        {
-//            pageIndex:4,
-//            poageSize:1
-//        },
-//        {
-//            headers:{
-//                contentType:"aplication/json; charset = UTF-8",
-//                dataType:'json'
-//            }
-//        }
-//
-//      ).then((res) => {
-//          res = res.body;
-//          if(res.responseStatus.code == '00'){
-//              console.log("sssssssss",res.result)
-//
-//          }
-//      })
-
-
     }
 
 

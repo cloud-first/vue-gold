@@ -3,15 +3,25 @@
     <h1></h1>
     <h1>辅助菜单</h1>
     <ul>
+      <!--<li>-->
+        <!--<router-link-->
+          <!--:to="{path: '/vue/coins-type/list-coins?',-->
+            <!--query: urlName}"-->
+        <!--&gt;-->
+          <!--广东一区 唯一入口-->
+        <!--</router-link>-->
+      <!--</li>-->
       <li>
         <router-link
-          :to="{path: '/vue/coins-type/list-coins?',
-            query: urlName}"
+          :to="{path: '/vue/coins-type/list-coins',
+          query:{'gname':'地下城与勇士','gameId':'YX16053120241378200001',
+          'areaname':'广东区','regionId': 'YXQ16053120274791000015','servername':'广东1区','serverId':'YXF16053120325978800016',
+          'goodsType':3,'raceName':'',
+          }}"
         >
           广东一区 唯一入口
         </router-link>
       </li>
-
     </ul>
   </div>
 </template>
@@ -20,7 +30,7 @@
   export default{
     data(){
       return {
-        list: [],
+//        list: [],
         gname: "地下城与勇士",
         gameId:'YX16053120241378200001',
         areaname: "广东区",
@@ -33,73 +43,73 @@
         isGoldMallEnable:'',
       }
     },
-    created () {
+    created (){
         //获取角色信息
-      this.$http.get(
-        '/api/mobile-goods-service/rs/purchaseData/selectHistoryRole',
-        {
-          params: {
-            regionName:this.areaname,
-            serverName: this.servername,
-            gameName: this.gname
-          }
-        },
-        {
-          headers: {
-            contentType: "aplication/json; charset = UTF-8",
-            dataType: 'json'
-          }
-        }
-      ).then((res) => {
-        console.log(res.body.data[0])
-        if(res.body.data[0]!=undefined){
-          console.log(res.body.data[0].roleName);
-          localStorage.openid = res.body.data[0].roleName;
-          localStorage.qqNumber = res.body.data[0].qqNumber;
-          localStorage.mobileNumber = res.body.data[0].mobileNumber;
-          this.list=[{"name": localStorage.getItem('openid')}]
-        }else{
-          localStorage.openid = "";
-          localStorage.qqNumber = "";
-          localStorage.mobileNumber = "";
-          this.list=[];
-        }
-
-      }, () => {
-        console.log("请求错误！");
-
-      });
+//      this.$http.get(
+//        '/api/mobile-goods-service/rs/purchaseData/selectHistoryRole',
+//        {
+//          params: {
+//            regionName:this.areaname,
+//            serverName: this.servername,
+//            gameName: this.gname
+//          }
+//        },
+//        {
+//          headers: {
+//            contentType: "aplication/json; charset = UTF-8",
+//            dataType: 'json'
+//          }
+//        }
+//      ).then((res) => {
+//        console.log(res.body.data[0])
+//        if(res.body.data[0]!=undefined){
+//          console.log(res.body.data[0].roleName);
+//          localStorage.openid = res.body.data[0].roleName;
+//          localStorage.qqNumber = res.body.data[0].qqNumber;
+//          localStorage.mobileNumber = res.body.data[0].mobileNumber;
+//          this.list=[{"name": localStorage.getItem('openid')}]
+//        }else{
+//          localStorage.openid = "";
+//          localStorage.qqNumber = "";
+//          localStorage.mobileNumber = "";
+//          this.list=[];
+//        }
+//
+//      }, () => {
+//        console.log("请求错误！");
+//
+//      });
       //对接商城状态
-      this.$http.get(
-        '/api/mobile-goods-service/rs/purchaseData/getGoldMallOpenedStatus',
-        {
-          params: {
-            gameName:this.gname,
-          }
-        },
-        {
-          headers: {
-            contentType: "aplication/json; charset = UTF-8",
-            dataType: 'json'
-          }
-        }
-      ).then((res) => {
-          console.log("请求成功！",res.body.isGoldMallEnable);
-          this.isGoldMallEnable = res.body.isGoldMallEnable;
-          this.urlName.isGoldMallEnable = res.body.isGoldMallEnable;
-          this.urlName.gname = this.gname,    //游戏名
-          this.urlName.gameId = this.gameId,  //游戏名Id
-          this.urlName.areaname = this.areaname,     //游戏区
-          this.urlName.regionId = this.regionId,  //游戏区id
-          this.urlName.servername = this.servername,               //游戏服
-          this.urlName.serverId = this.serverId,  //游戏服id
-          this.urlName.raceName = this.raceName,  //游戏服id
-          this.urlName.goodsType = 3,
-          this.urlName.list = JSON.stringify(this.list)
-      }, () => {
-        console.log("请求错误l！");
-
-      });
+//      this.$http.get(
+//        '/api/mobile-goods-service/rs/purchaseData/getGoldMallOpenedStatus',
+//        {
+//          params: {
+//            gameName:this.gname,
+//          }
+//        },
+//        {
+//          headers: {
+//            contentType: "aplication/json; charset = UTF-8",
+//            dataType: 'json'
+//          }
+//        }
+//      ).then((res) => {
+//          console.log("请求成功！",res.body.isGoldMallEnable);
+//          this.isGoldMallEnable = res.body.isGoldMallEnable;
+//          this.urlName.isGoldMallEnable = res.body.isGoldMallEnable;
+//          this.urlName.gname = this.gname,    //游戏名
+//          this.urlName.gameId = this.gameId,  //游戏名Id
+//          this.urlName.areaname = this.areaname,     //游戏区
+//          this.urlName.regionId = this.regionId,  //游戏区id
+//          this.urlName.servername = this.servername,               //游戏服
+//          this.urlName.serverId = this.serverId,  //游戏服id
+//          this.urlName.raceName = this.raceName,  //游戏服id
+//          this.urlName.goodsType = 3,
+//          this.urlName.list = JSON.stringify(this.list)
+//      }, () => {
+//        console.log("请求错误l！");
+//
+//      });
     },
   mounted (){
 
@@ -108,41 +118,41 @@
   methods:{
     //登录
     //获取角色信息
-    historyRole:function () {
-      this.$http.get(
-        '/api/mobile-goods-service/rs/purchaseData/selectHistoryRole',
-        {
-          params: {
-            regionName:this.areaname,
-            serverName: this.servername,
-            gameName: this.gname
-          }
-        },
-        {
-          headers: {
-            contentType: "aplication/json; charset = UTF-8",
-            dataType: 'json'
-          }
-        }
-      ).then((res) => {
-          console.log(res.body.data[0])
-        if(res.body.data[0]!=undefined){
-          console.log(res.body.data[0].roleName);
-          localStorage.openid = res.body.data[0].roleName;
-          localStorage.qqNumber = res.body.data[0].qqNumber;
-          localStorage.mobileNumber = res.body.data[0].mobileNumber ;
-        }else{
-          localStorage.openid = "";
-          localStorage.qqNumber = "";
-          localStorage.mobileNumber = "";
-          this.list=[];
-        }
-
-      }, () => {
-        console.log("请求错误！");
-
-      });
-    },
+//    historyRole:function () {
+//      this.$http.get(
+//        '/api/mobile-goods-service/rs/purchaseData/selectHistoryRole',
+//        {
+//          params: {
+//            regionName:this.areaname,
+//            serverName: this.servername,
+//            gameName: this.gname
+//          }
+//        },
+//        {
+//          headers: {
+//            contentType: "aplication/json; charset = UTF-8",
+//            dataType: 'json'
+//          }
+//        }
+//      ).then((res) => {
+//          console.log(res.body.data[0])
+//        if(res.body.data[0]!=undefined){
+//          console.log(res.body.data[0].roleName);
+//          localStorage.openid = res.body.data[0].roleName;
+//          localStorage.qqNumber = res.body.data[0].qqNumber;
+//          localStorage.mobileNumber = res.body.data[0].mobileNumber ;
+//        }else{
+//          localStorage.openid = "";
+//          localStorage.qqNumber = "";
+//          localStorage.mobileNumber = "";
+//          this.list=[];
+//        }
+//
+//      }, () => {
+//        console.log("请求错误！");
+//
+//      });
+//    },
 
 
   }

@@ -10,11 +10,11 @@
           </div>
           <div class="pt-20">
             <span class="s1 f28 color-888">单价: </span>
-            <span class="s2 f28 color-000">1元={{perPrice}}</span>
+            <span class="s2 f28 color-000">1元=47.28{{$route.query.unitName}}</span>
           </div>
         </div>
         <div class="fr">
-          <span class="d-block f36 color-m1 text-right">￥{{$route.query.unitNum/$route.query.unPrice}}</span>
+          <span class="d-block f36 color-m1 text-right">￥{{$route.query.numMoney.toFixed(2)}}</span>
           <span class="d-block coin-s2 pt-20 f28 color-888"><em class="mr-20"><img src="~images/coins/mobile.png" /></em><em class="coin-e1">库存 {{$route.query.deliveryNum}}件</em></span>
         </div>
       </div>
@@ -32,7 +32,7 @@
     </div>
     <!---------------------------- 购买 ---------------------------->
     <div class="fixed-bottom01 bg-fff px-30 py-20 pr">
-      <div class="f32 color-000 lh110">合计<span class="f40 color-f75e46">￥{{coins_num*perPrice}}</span></div>
+      <div class="f32 color-000 lh110">合计<span class="f40 color-f75e46">￥{{$route.query.numMoney.toFixed(2)}}</span></div>
   	<button class="coin-btn bg-f75e46 lh110 color-fff f36 pa"  @click="dialogBox">立即购买</button>
     </div>
     <!---------------------------- 角色信息 ---------------------------->
@@ -41,8 +41,8 @@
 	  	<dialog-cover v-if="dialog_cover"></dialog-cover>
       <!--弹出框1-->
       <dialog-smbox v-if="smBox" :smbox="smboxMessage"></dialog-smbox>
-	  		<!--弹出框-->
-	  	<dialog-box v-if="dialog_box"></dialog-box>
+    <!--弹出框2-->
+    <dialog-box v-if="dialog_box" :title="boxMessage"></dialog-box>
 	  </div>
   </div>
 </template>
@@ -77,6 +77,7 @@
         phoneName:'',
         smBox:false,
         smboxMessage:"",
+        boxMessage:'很抱歉，该商品类型手机版尚未开通,建议您去电脑版发布出售。',
         isTest: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list): [],
         coins_num:this.$route.query.deliveryNum,
       }
@@ -211,8 +212,9 @@
                receiver:this.receiver,
                mobileNumber:this.phoneName,
                qq:this.qqName,
-               goldCount:Number(this.$route.query.unitNum)*1000,
-               unitPrice:Number(this.$route.query.unitPrice),
+               goldCount:Number(this.$route.query.unitNum),
+//               unitPrice:Number(this.$route.query.unitPrice),
+               unitPrice:0.02115,
              },
              {
                headers: {
@@ -238,7 +240,7 @@
              }else {
                this.dialog_box = true;
                this.dialog_cover =true;
-               this.boxMessage = "库存不足"
+               this.boxMessage = "抱歉，手慢一步，库存已不足"
              }
            }, () => {
              console.log("请求错误！");

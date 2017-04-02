@@ -28,8 +28,8 @@
      <dialog-smbox v-if="smBox" :smbox="smboxMessage"></dialog-smbox>
      <!---------------------------- 遮料层 ---------------------------->
 	  	<dialog-cover v-if="dialog_cover"></dialog-cover>
-	  		<!--弹出框-->
-	  	<dialog-box v-if="dialog_box"></dialog-box>
+    <!--弹出框2-->
+  <dialog-box v-if="dialog_box" :title="boxMessage"></dialog-box>
 </div>
 </template>
 
@@ -179,13 +179,17 @@
               }
             ).then((res) => {
               res = res.body;
-              this.indicator = true
+              this.indicator = false
               console.log("55566555")
               if (res.responseStatus.code == '00') {
                 console.log("购买成功")
                 //this.$router.push({path: '/vue/coins-type/coins-order',query: {'orderId':res.orderId}})
                 location.href = "http://yxbmall.5173.com/gamegold-facade-frontend/mPayment?orderId="+res.orderId
 
+              }else{
+                this.dialog_box = true;
+                this.dialog_cover =true;
+                this.boxMessage = "抱歉，手慢一步，库存已不足"
               }
             }, () => {
               console.log("请求错误！");

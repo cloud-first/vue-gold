@@ -59,7 +59,7 @@
         smBox:false,
         smboxMessage:"",
         message:"",
-        isTrue:(this.url[0] == undefined)?false:true
+        isTrue:(localStorage.getItem("openid") == "")?false:true
 
       }
     },
@@ -92,7 +92,7 @@
 
     },
     created(){
-        if(this.url[0]!=undefined){
+        if(localStorage.getItem("openid") != ""){
             this.receiver = localStorage.getItem('openid');
             this.qqName = localStorage.getItem('qqNumber');
             this.phoneName = localStorage.getItem('mobileNumber');
