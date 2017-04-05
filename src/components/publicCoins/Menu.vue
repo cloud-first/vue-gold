@@ -14,8 +14,8 @@
       <li>
         <router-link
           :to="{path: '/vue/coins-type/list-coins',
-          query:{'gname':'地下城与勇士','gameId':'YX16053120241378200001',
-          'areaname':'广东区','regionId': 'YXQ16053120274791000015','servername':'广东1区','serverId':'YXF16053120325978800016',
+          query:{'gname':'地下城与勇士','gid':'YX16053120241378200001',
+          'areaname':'广东区','areaid': 'YXQ16053120274791000015','servername':'广东1区','serverid':'YXF16053120325978800016',
           'goodsType':3,'raceName':'',
           }}"
         >
@@ -32,11 +32,11 @@
       return {
 //        list: [],
         gname: "地下城与勇士",
-        gameId:'YX16053120241378200001',
+        gid:'YX16053120241378200001',
         areaname: "广东区",
-        regionId : 'YXQ16053120274791000015',
+        areaid : 'YXQ16053120274791000015',
         servername: "广东1区",
-        serverId :'YXF16053120325978800016',
+        serverid :'YXF16053120325978800016',
         raceName :(typeof this.$route.query.raceName == 'string')?raceName: undefined,
         gameName: "",
         urlName: {},

@@ -7,7 +7,7 @@ import Menu from '../components/publicCoins/Menu'
 // import CoinsFast from '../components/coins/Coins_Fast'
 // import CoinsOrder from '../components/coins/Coins_Order'
 
-import {coinsType} from './Coins_Type.js'
+import {coinsType} from './coinsType.js'
 import {quickLogin} from './quickLogin.js'
 Vue.use(Router);
 
@@ -21,10 +21,10 @@ export default new Router({
     },
     coinsType,
     quickLogin,
-    {
-      path: '*',
-      redirect: "/menu",
-    },
+    // {
+    //   path: '*',
+    //   redirect: "/menu",
+    // },
 
   ]
 })

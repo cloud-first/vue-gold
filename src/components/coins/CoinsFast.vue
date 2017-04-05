@@ -8,12 +8,12 @@
     </div>
     <ul class="clearfix px-20 mt-30">
       <li class="fl text-center px-10" v-for="(fastList, key) in fastLists">
-      <router-link class="d-block f28 my-10 pt-10" :to="{name:'CoinsSome', query:{'fastListMoney':fastList,'unPrice':unPrice,'moneyName':moneyName,'unitPrice':unitPrice,'gname': $route.query.gname,'areaname':$route.query.areaname,'servername':$route.query.servername,'goodsType':3,'gameId' : $route.query.gameId,'regionId' : $route.query.regionId,'serverId' : $route.query.serverId,'list': $route.query.list}}">
+      <router-link class="d-block f28 my-10 pt-10" :to="{name:'CoinsSome', query:{'fastListMoney':fastList,'unPrice':unPrice,'moneyName':moneyName,'unitPrice':unitPrice,'gname': $route.query.gname,'areaname':$route.query.areaname,'servername':$route.query.servername,'goodsType':3,'gid' : $route.query.gid,'areaid' : $route.query.areaid,'serverid' : $route.query.serverid,'list': $route.query.list}}">
       <b class="d-block f32 pb-5 color-f75e46 ">{{key}}元</b> {{fastList}}{{moneyName}}
       </router-link>
       </li>
       <li class="fl text-center px-10 ">
-        <router-link class="d-block f32 my-10 color-f75e46" :to="{name:'CoinsElse', query:{'unPrice':unPrice,'totalCount':totalCount,'moneyName':moneyName,'unitPrice':unitPrice,'gname': $route.query.gname,'areaname':$route.query.areaname,'servername':$route.query.servername,'goodsType':3,'gameId' : $route.query.gameId,'regionId' : $route.query.regionId,'serverId' : $route.query.serverId,'list': $route.query.list}}">
+        <router-link class="d-block f32 my-10 color-f75e46" :to="{name:'CoinsElse', query:{'unPrice':unPrice,'totalCount':totalCount,'limitPrice':limitPrice,'moneyName':moneyName,'unitPrice':unitPrice,'gname': $route.query.gname,'areaname':$route.query.areaname,'servername':$route.query.servername,'goodsType':3,'gid' : $route.query.gid,'areaid' : $route.query.areaid,'serverid' : $route.query.serverid,'list': $route.query.list}}">
           <b class="lh110">其他数额</b>
         </router-link>
       </li>
@@ -34,6 +34,7 @@
         totalCount:'',
         deliveryMessage:'',
         moneyName:'',
+        limitPrice:'',
         list: {
           list: [{
             "name": localStorage.getItem('openid'),
@@ -48,7 +49,7 @@
         '/api/mobile-goods-service/rs/purchaseData/getPriceConfig',
         {
           params: {
-            gameId: this.$route.query.gameId,
+            gameId: this.$route.query.gid,
             gameName: this.$route.query.gname,
             regionName: this.$route.query.areaname,
             serverName: this.$route.query.servername,
@@ -72,8 +73,9 @@
           this.unitPrice = res.unitPrice;
           this.totalCount = res.totalCount;
           this.deliveryMessage = res.deliveryMessage;
-          this.moneyName = res.moneyName
-          this.unPrice = (1/res.unitPrice).toFixed(2)
+          this.moneyName = res.moneyName;
+          this.unPrice = (1/res.unitPrice).toFixed(2);
+          this.limitPrice = res.limitPrice;
         }
       }, () => {
         console.log("请求错误l！");

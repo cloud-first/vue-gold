@@ -52,6 +52,7 @@
   import { Indicator } from 'mint-ui'
   Vue.filter('mathFilter',function(value){
     return value.toFixed(2)
+    return Math.round(2.135*100)/100;
   });
   export default{
     name:"CoinsElse",
@@ -70,7 +71,8 @@
         dialog_box2:false,
         isTest: (typeof this.url == 'string')? this.url: [],
         indicator:false,
-        maximum:this.$route.query.totalCount
+        maximum:this.$route.query.totalCount,
+        limitPrice:this.$route.query.limitPrice     //限制购买金额
       }
     },
     components: {
@@ -92,22 +94,22 @@
 
     },
     watch:{
-      buyNum:
-        function (val, oldVal){
-          if(val==""){
-            return
-          }
-          if(val>this.maximum){
-            this.buyNum=oldVal
-          }
-          var patrn = /^\d+(\.\d{1,2}|\.)?$/;
-          console.log(this.buyNum)
-          if(patrn.test(val)){
-            this.buyNum=this.buyNum
-          }else{
-            this.buyNum=oldVal
-          }
-        }
+//      buyNum:
+//        function (val, oldVal){
+//          if(val==""){
+//            return
+//          }
+//          if(val>this.maximum){
+//            this.buyNum=oldVal
+//          }
+//          var patrn = /^\d+(\.\d{1,2}|\.)?$/;
+//          console.log(this.buyNum)
+//          if(patrn.test(val)){
+//            this.buyNum=this.buyNum
+//          }else{
+//            this.buyNum=oldVal
+//          }
+//        }
     },
     created(){
       //Indicator.open();
@@ -140,14 +142,15 @@
         if(this.buyNum.substr(-1, 1) == '.'){
           this.buyNum = parseInt(this.buyNum)
         };
-        if(this.buyNum>this.$route.query.totalCount){
-          this.smBox=true;
-          this.smboxMessage="购买金额大于库存量";
-        }
+//        if(this.buyNum>this.$route.query.totalCount){
+//          this.smBox=true;
+//          this.smboxMessage="购买金额大于库存量";
+//        }
       },
 
       //提交订单
     	dialogBox:function(){
+          console.log(this.limitPrice)
         const self = this
         var qqReg=/^[1-9]\d{4,10}$/;
         var mobileReg = /(^0{0,1}1[3|4|5|6|7|8|9][0-9]{9}$)/;
@@ -155,10 +158,6 @@
           this.smBox=true;
           this.smboxMessage="请输入购买数量";
           return false
-        }else if(this.buyNum*this.$route.query.unitPrice<20){
-          this.smBox=true;
-          this.smboxMessage="购买金额需要大于20元";
-          return false;
         }else if(this.receiver==""){
           this.smBox=true;
           this.smboxMessage="请填写收货角色姓名";
@@ -215,9 +214,9 @@
                 gameName: this.$route.query.gname,
                 region:this.$route.query.areaname,
                 server:this.$route.query.servername,
-                gameId:this.$route.query.gameId,
-                regionId:this.$route.query.regionId,
-                serverId:this.$route.query.serverId,
+                gameId:this.$route.query.gid,
+                regionId:this.$route.query.areaid,
+                serverId:this.$route.query.serverid,
                 receiver:this.receiver,
                 mobileNumber:this.phoneName,
                 qq:this.qqName,
@@ -232,12 +231,6 @@
                 }
               }
             ).then((res) => {
-//               判断库存量
-//              if(res.message=="库存不足"){
-//                this.dialog_box = true;
-//                this.dialog_cover =true;
-//                this.boxMessage = "库存不足"
-//              }
               res = res.body;
             console.log("55566555")
             this.indicator = false
@@ -245,13 +238,15 @@
               console.log("购买成功",res);
               console.log("购买成功",res.orderId);
               //this.$router.push({path: '/vue/coins-type/coins-order',query: {'orderId':res.orderId}})
-              //location.href = "http://yxbmall.5173.com/gamegold-facade-frontend/mPayment?orderId=YX1703310003376"
+              location.href = "http://yxbmall.5173.com/gamegold-facade-frontend/mPayment?orderId=YX1703310003376"
               location.href = "http://yxbmall.5173.com/gamegold-facade-frontend/mPayment?orderId="+res.orderId
 
             }else{
-                this.dialog_box = true;
-               this.dialog_cover =true;
-               this.boxMessage = "抱歉，手慢一步，库存已不足"
+                if(res.responseStatus.message == "库存游戏币数目不足"){
+                  this.dialog_box = true;
+                  this.dialog_cover =true;
+                  this.boxMessage = "抱歉，手慢一步，库存5555已不足"
+                }
             }
           }, () => {
               console.log("请求错误！");

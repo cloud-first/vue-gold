@@ -10,11 +10,11 @@
           </div>
           <div class="pt-20">
             <span class="s1 f28 color-888">单价: </span>
-            <span class="s2 f28 color-000">1元=47.28{{$route.query.unitName}}</span>
+            <span class="s2 f28 color-000">1元={{$route.query.price}}{{$route.query.unitName}}</span>
           </div>
         </div>
         <div class="fr">
-          <span class="d-block f36 color-m1 text-right">￥{{$route.query.numMoney.toFixed(2)}}</span>
+          <span class="d-block f36 color-m1 text-right">￥{{numMoney}}</span>
           <span class="d-block coin-s2 pt-20 f28 color-888"><em class="mr-20"><img src="~images/coins/mobile.png" /></em><em class="coin-e1">库存 {{$route.query.deliveryNum}}件</em></span>
         </div>
       </div>
@@ -23,7 +23,7 @@
           <span class="f32 color-000">库存数量</span>
           <div class="count2">
             <input class="reduce fl f48" name="" type="button" value="-" @click="coins_reduce">
-            <input class="num fl f36" name=""  v-model="coins_num">
+            <input class="num fl f36" name=""  v-model="coins_num" v-on:blur="coins_blur">
             <input class="add fl common-color f48" name="" type="button" value="+" @click="coins_add">
           </div>
           <span class="f32 fr">件</span>
@@ -32,7 +32,7 @@
     </div>
     <!---------------------------- 购买 ---------------------------->
     <div class="fixed-bottom01 bg-fff px-30 py-20 pr">
-      <div class="f32 color-000 lh110">合计<span class="f40 color-f75e46">￥{{$route.query.numMoney.toFixed(2)}}</span></div>
+      <div class="f32 color-000 lh110">合计<span class="f40 color-f75e46">￥{{numMoney}}</span></div>
   	<button class="coin-btn bg-f75e46 lh110 color-fff f36 pa"  @click="dialogBox">立即购买</button>
     </div>
     <!---------------------------- 角色信息 ---------------------------->
@@ -54,9 +54,10 @@
   import DialogCover from "../publicCoins/DialogCover.vue"
   import DialogBox from "../publicCoins/DialogBox.vue"
   import Smbox from "./Smbox.vue"
-  Vue.filter('mathFilter',function(value){
-    return value.toFixed(2)
-  });
+//  Vue.filter('mathFilter',function(value){
+//    return value.toFixed(2)
+//    //return Math.round(value*100) / 100
+//  });
   export default{
     props:{
       buyPrice: {
@@ -77,6 +78,7 @@
         phoneName:'',
         smBox:false,
         smboxMessage:"",
+        numMoney:this.$route.query.numMoney,
         boxMessage:'很抱歉，该商品类型手机版尚未开通,建议您去电脑版发布出售。',
         isTest: (typeof this.$route.query.list == 'string')?JSON.parse(this.$route.query.list): [],
         coins_num:this.$route.query.deliveryNum,
@@ -112,6 +114,11 @@
         }
     },
     methods:{
+      coins_blur:function () {
+        if(this.coins_num=="") {
+          this.coins_num = 1
+        }
+      },
       //收货角色名
       formRoleName:function (str) {
         console.log("我是父组件传来的",str)
@@ -206,9 +213,9 @@
                gameName: this.$route.query.gname,
                region:this.$route.query.areaname,
                server:this.$route.query.servername,
-               gameId:this.$route.query.gameId,
-               regionId:this.$route.query.regionId,
-               serverId:this.$route.query.serverId,
+               gameId:this.$route.query.gid,
+               regionId:this.$route.query.areaid,
+               serverId:this.$route.query.serverid,
                receiver:this.receiver,
                mobileNumber:this.phoneName,
                qq:this.qqName,
@@ -238,9 +245,11 @@
                //this.$router.push({path: '/vue/coins-type/coins-order',query: {'orderId':res.orderId}})
                location.href = "http://yxbmall.5173.com/gamegold-facade-frontend/mPayment?orderId="+res.orderId
              }else {
-               this.dialog_box = true;
-               this.dialog_cover =true;
-               this.boxMessage = "抱歉，手慢一步，库存已不足"
+               if(res.responseStatus.message == "商品件数不足"){
+                 this.dialog_box = true;
+                 this.dialog_cover =true;
+                 this.boxMessage = "抱歉，手慢一步，库存已不足"
+               }
              }
            }, () => {
              console.log("请求错误！");

@@ -162,9 +162,9 @@
                 gameName: this.$route.query.gname,
                 region:this.$route.query.areaname,
                 server:this.$route.query.servername,
-                gameId:this.$route.query.gameId,
-                regionId:this.$route.query.regionId,
-                serverId:this.$route.query.serverId,
+                gameId:this.$route.query.gid,
+                regionId:this.$route.query.areaid,
+                serverId:this.$route.query.serverid,
                 receiver:this.receiver,
                 mobileNumber:this.phoneName,
                 qq:this.qqName,
@@ -187,9 +187,11 @@
                 location.href = "http://yxbmall.5173.com/gamegold-facade-frontend/mPayment?orderId="+res.orderId
 
               }else{
-                this.dialog_box = true;
-                this.dialog_cover =true;
-                this.boxMessage = "抱歉，手慢一步，库存已不足"
+                if(res.responseStatus.message == "商品件数不足"){
+                  this.dialog_box = true;
+                  this.dialog_cover =true;
+                  this.boxMessage = "抱歉，手慢一步，库存已不足"
+                }
               }
             }, () => {
               console.log("请求错误！");

@@ -13,14 +13,14 @@
         <li class="border-bottom p-30" v-for="personList in personLists">
           <!--<router-link :to="{name:'CoinsSales', query:abc}">-->
           <router-link
-            :to="{name:'CoinsSales',query:{'deliveryNum':personList.deliveryNum,'numMoney':0.02115*personList.unitNum,'unPrice':personList.unPrice,'unitNum':personList.unitNum,'unitName':personList.unitName,'gname': $route.query.gname,'areaname':$route.query.areaname,'servername':$route.query.servername,'goodsType':3,'gameId' : $route.query.gameId,'regionId' : $route.query.regionId,'serverId' : $route.query.serverId,'list': $route.query.list}}">
+            :to="{name:'CoinsSales',query:{'deliveryNum':personList.deliveryNum,'numMoney':(personList.unitNum*0.02).toFixed(2),'price':(1/price).toFixed(2),'unitNum':personList.unitNum,'unitName':personList.unitName,'gname': $route.query.gname,'areaname':$route.query.areaname,'servername':$route.query.servername,'goodsType':3,'gid' : $route.query.gid,'areaid' : $route.query.areaid,'serverid' : $route.query.serverid,'list': $route.query.list}}">
             <div class="clearfix">
               <span class="fl f32 color-010101">{{personList.unitNum}}{{personList.unitName}}</span>
-              <b class="fr f32 color-f75e46">{{0.02115*personList.unitNum|mathFilter}}元</b>
+              <b class="fr f32 color-f75e46">{{0.02*personList.unitNum|mathFilter}}元</b>
             </div>
             <div class="clearfix mt-25">
               <div class="fl f28 color-010101">
-                <span class="color-888">单价</span>1元=47.28万金
+                <span class="color-888">单价</span>1元={{1/0.02|mathFilter}}万金
               </div>
               <div class="fr">
                 <i class="mr-20"><img src="~images/coins/mobile.png"></i><span class="f28 va15 color-888">库存 {{personList.deliveryNum}}件</span>
@@ -55,7 +55,9 @@
         unPrice:'',
         moneyName:'',
         unitPrice:'',
+        numMoney:'',
         query: this.$route.query,
+        price:0.02,
         list: {
           list: [{
             "name": localStorage.getItem('openid'),
@@ -93,9 +95,9 @@
           '/api/mobile-goods-service/rs/goods/gold/selectByMUserGold',
           {
             params: {
-              gameId:this.$route.query.gameId,  //游戏ID
-              regionId:this.$route.query.regionId,  //游戏区ID
-              serverId:this.$route.query.serverId,  //游戏服ID
+              gameId:this.$route.query.gid,  //游戏ID
+              regionId:this.$route.query.areaid,  //游戏区ID
+              serverId:this.$route.query.serverid,  //游戏服ID
               pageSize :this.pageSize,
               start :this.start,
               raceName:this.$route.query.raceName,
@@ -110,7 +112,7 @@
         ).then((res) => {
           console.log(res.data.goodsEOList)
           res.data.goodsEOList.forEach(function(item,index){
-            console.log(item)
+            console.log("--------------",item)
             self.personLists.push(item)
 
           })
@@ -133,9 +135,9 @@
           '/api/mobile-goods-service/rs/goods/gold/selectByMUserGold',
           {
             params: {
-              gameId:this.$route.query.gameId,  //游戏ID
-              regionId:this.$route.query.regionId,  //游戏区ID
-              serverId:this.$route.query.serverId,  //游戏服ID
+              gameId:this.$route.query.gid,  //游戏ID
+              regionId:this.$route.query.areaid,  //游戏区ID
+              serverId:this.$route.query.serverid,  //游戏服ID
               pageSize :this.pageSize,
               start :this.start,
               raceName:this.$route.query.raceName,
@@ -148,8 +150,11 @@
             }
           }
         ).then((res) => {
-          console.log(res.data.goodsEOList)
-          this.personLists = res.data.goodsEOList
+          if (res.data.responseStatus.code == '00') {
+            console.log(res.data.goodsEOList)
+            this.personLists = res.data.goodsEOList
+          }
+
         }, () => {
           console.log("请求错误！");
 

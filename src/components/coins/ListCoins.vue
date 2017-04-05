@@ -76,7 +76,6 @@
           }
         }
       ).then((res) => {
-        console.log(res.body.data[0])
         if(res.body.data[0]!=undefined){
           console.log(res.body.data[0].roleName);
           localStorage.openid = res.body.data[0].roleName;
